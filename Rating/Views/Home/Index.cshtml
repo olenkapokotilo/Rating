@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Rating.Models.UserModel>
+
+
+    <div>
+       
+        <h3>Распродажа книг</h3>
+        <table>
+            <tr>
+                <td><p>Email</p></td>
+                <td></td>
+            </tr>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td><p>@u.Email    </p></td>
+                    <td>@Html.ActionLink("About", "About", new { id = u.Id})</td>
+                    
+                </tr>
+            }
+        </table>
+    </div>

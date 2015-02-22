@@ -1,0 +1,16 @@
+﻿@model  Rating.Models.UserModel
+
+
+<p>info</p>
+<table>
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.Email</td>
+        <td>@Model.Password</td>
+        @foreach(var p in Model.Projects)
+        {}
+    </tr>
+</table>
+<a href="@Url.Action("Index", "Home")">Index Home</a>
+
+

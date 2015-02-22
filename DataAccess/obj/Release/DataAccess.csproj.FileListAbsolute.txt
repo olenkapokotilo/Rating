@@ -1,0 +1,17 @@
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\DataAccess.dll.config
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\DataAccess.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\DataAccess.pdb
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\AutoMapper.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\AutoMapper.Net4.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\Domain.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\EntityFramework.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\Domain.pdb
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\AutoMapper.pdb
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\AutoMapper.xml
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\AutoMapper.Net4.pdb
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\EntityFramework.xml
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\obj\Release\DataAccess.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\obj\Release\DataAccess.pdb
