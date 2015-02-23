@@ -45,7 +45,7 @@ namespace Rating.Controllers
             }
             
         }
-        public ActionResult LogOf() 
+        public ActionResult LogOff() 
         {
             FormsAuthentication.SignOut();
             return Redirect("/Account/Login");
