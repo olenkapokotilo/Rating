@@ -26,7 +26,7 @@ namespace DataAccess.Repositories
         {
             using (var entities = new Entities())
             {
-                var dbUser = entities.User.Single(u => u.Email == email);
+                var dbUser = entities.User.SingleOrDefault(u => u.Email == email);
                 var result = Mapper.Map<Domain.Entities.User>(dbUser);
                 return result;
             }
@@ -38,6 +38,22 @@ namespace DataAccess.Repositories
                 var dbUsers = entities.User.ToList();
                 IEnumerable<Domain.Entities.User> result = Mapper.Map<IEnumerable<Domain.Entities.User>>(dbUsers);
                 return result.ToList();
+            }
+        }
+        public void Add(Domain.Entities.User user) 
+        {
+            using (var entities = new Entities()) 
+            {
+
+                entities.User.Add(Mapper.Map<DataAccess.Model.User>(user));
+                entities.SaveChanges();
+            }
+        }
+        public void SaveChanges() 
+        {
+            using (var entities = new Entities()) 
+            {
+                entities.SaveChanges();
             }
         }
     }

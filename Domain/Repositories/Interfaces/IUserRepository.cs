@@ -12,6 +12,8 @@ namespace Domain.Repositories.Interfaces
         User GetUser(int id);
         User GetUserByEmail(string email);
 
-        List<User> GetAllUsers();        
+        List<User> GetAllUsers();
+        void Add(User user);
+        void SaveChanges();
     }
 }

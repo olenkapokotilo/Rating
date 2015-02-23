@@ -19,6 +19,7 @@ namespace Rating.Controllers
     public class AccountController : Controller
     {
         private IUserRepository _userRepository;
+        //private C
         public AccountController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -43,12 +44,28 @@ namespace Rating.Controllers
             {
                 return Redirect("/Account/Login"); //why to do redirect its still a "Login" method?
             }
-            
         }
         public ActionResult LogOff() 
         {
             FormsAuthentication.SignOut();
             return Redirect("/Account/Login");
+        }
+        
+        [AllowAnonymous]
+        public ActionResult Register() 
+        {
+            return View();
+        }
+         [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Register(string Email, string Password) 
+        {
+            
+            MembershipUser newUser = Membership.CreateUser(Email, Password);
+            FormsAuthentication.SetAuthCookie(Email, false);
+            return Redirect("/Home/Index");
+          
+            return View("/Shared/Error");
         }
     }
 }

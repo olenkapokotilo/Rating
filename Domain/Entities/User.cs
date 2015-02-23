@@ -14,5 +14,7 @@ namespace Domain.Entities
         public int RoleId { get; set; }
 
         public IEnumerable<Project> Projects { get; set; }
+
+       
     }
 }

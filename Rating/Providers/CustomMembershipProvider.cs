@@ -14,10 +14,12 @@ namespace Rating.Providers
     public class CustomMembershipProvider: MembershipProvider
     {
         private IUserRepository _userRepository;
+        private IRoleRepository _roleRepository;
 
         public CustomMembershipProvider()
         {
             _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
+            _roleRepository = DependencyResolver.Current.GetService<IRoleRepository>();
         }
 
         public  override bool ValidateUser(string email, string password)
@@ -37,6 +39,28 @@ namespace Rating.Providers
                 }
          
             return isValid;
+        }
+
+        private UserModel CreateUser(string Email, string Password) 
+        {
+            UserModel user = GetUser(Email);
+            if (user == null) 
+            {
+                UserModel newUser = new UserModel();
+                newUser.Email = Email;
+                newUser.Password = Password;
+                if (RoleModel.FromDomainModel(_roleRepository.GetRole(1)) != null) 
+                {
+                    newUser.RoleId = 2;
+                }
+                _userRepository.Add(newUser.ToDomainModel());
+                return newUser;
+
+            }
+            else
+            {
+                throw new InvalidOperationException("User already exists!");
+            }
         }
    
         //public override string ApplicationName
@@ -61,9 +85,6 @@ namespace Rating.Providers
         //    throw new NotImplementedException();
         //}
 
-       
-
-
 
         public override string ApplicationName
         {
@@ -87,9 +108,12 @@ namespace Rating.Providers
             throw new NotImplementedException();
         }
 
-        public override System.Web.Security.MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out System.Web.Security.MembershipCreateStatus status)
+        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out System.Web.Security.MembershipCreateStatus status)
         {
-            throw new NotImplementedException();
+            status = MembershipCreateStatus.Success;
+            var user = this.CreateUser(username, password);
+            return new MembershipUser("CustomMembershipProvider", user.Email, null, null, null, null,
+                      false, false, DateTime.Now, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
         }
 
         public override bool DeleteUser(string username, bool deleteAllRelatedData)

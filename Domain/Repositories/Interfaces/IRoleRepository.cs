@@ -11,6 +11,6 @@ namespace Domain.Repositories.Interfaces
     {
         Role GetRole(int id);
 
-        List<Role> GetAllRoles();   
+        List<Role> GetAllRoles();
     }
 }
