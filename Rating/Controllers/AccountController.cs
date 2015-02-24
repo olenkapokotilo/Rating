@@ -12,6 +12,7 @@ using Rating.Models;
 using Domain.Repositories.Interfaces;
 using Rating.Providers;
 using System.Web.Security;
+using Rating.Services;
 
 namespace Rating.Controllers
 {
@@ -31,18 +32,34 @@ namespace Rating.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(string Email, string Password) 
-        {
-            if (Membership.ValidateUser(Email, Password) == true)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string Email, string Password, bool forgotpass) 
             {
-                FormsAuthentication.SetAuthCookie(Email, false);
-                return Redirect("/Home/Index"); //what's view you return here??
-            }
-            else 
-            {
-                return Redirect("/Account/Login"); //why to do redirect its still a "Login" method?
+                if (forgotpass == true)
+                {
+                    var user = _userRepository.GetUserByEmail(Email);
+                    if (user != null)
+                    {
+                        EmailService.SendForgottenPassword(user.Email, user.Password);
+                        return View();
+                    }
+                    else
+                    {
+                        throw new ArgumentException(string.Format("No user with the email '{0}' exists.", Email));
+                    }
+                }
+                else { 
+                if (Membership.ValidateUser(Email, Password) == true)
+                {
+                    FormsAuthentication.SetAuthCookie(Email, false);
+                    return Redirect("/Home/Index"); 
+                }
+                else 
+                {
+                    return View();
+                }
             }
         }
         public ActionResult LogOff() 
@@ -64,8 +81,6 @@ namespace Rating.Controllers
             MembershipUser newUser = Membership.CreateUser(Email, Password);
             FormsAuthentication.SetAuthCookie(Email, false);
             return Redirect("/Home/Index");
-          
-            return View("/Shared/Error");
         }
          [Authorize] 
          public ActionResult ChangePassword() 
@@ -75,8 +90,9 @@ namespace Rating.Controllers
          }
         [Authorize]
         [HttpPost]
-         public ActionResult ChangePassword(string Email, string oldPassword, string newPassword, string newRepeatPassword) 
+         public ActionResult ChangePassword(string Email, string oldPassword, string newPassword, string newRepeatPassword, bool forgot) 
         {
+            
             if (Membership.ValidateUser(Email, oldPassword) == true)
             {
                 _userRepository.ChangePassword(newPassword, newRepeatPassword, Email);
@@ -84,5 +100,13 @@ namespace Rating.Controllers
             }
             return Redirect("/Account/ChangePassword");
         }
+
+        [AllowAnonymous]
+        public string Confirm(string Email)
+        {
+            return "На почтовый адрес " + Email + " Вам высланы дальнейшие" +
+                    "инструкции по завершению регистрации";
+        } 
+
     }
 }
