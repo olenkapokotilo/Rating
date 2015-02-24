@@ -15,5 +15,6 @@ namespace Domain.Repositories.Interfaces
         List<User> GetAllUsers();
         void Add(User user);
         void SaveChanges();
+        void ChangePassword(string newPassword, string newRepeatPassword, string Email);
     }
 }

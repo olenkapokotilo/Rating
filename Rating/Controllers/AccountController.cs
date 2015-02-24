@@ -67,5 +67,22 @@ namespace Rating.Controllers
           
             return View("/Shared/Error");
         }
+         [Authorize] 
+         public ActionResult ChangePassword() 
+         {
+             ViewBag.Cookie_0 = HttpContext.Response.Cookies["Email"];
+             return View(ViewBag.Cookie_0);
+         }
+        [Authorize]
+        [HttpPost]
+         public ActionResult ChangePassword(string Email, string oldPassword, string newPassword, string newRepeatPassword) 
+        {
+            if (Membership.ValidateUser(Email, oldPassword) == true)
+            {
+                _userRepository.ChangePassword(newPassword, newRepeatPassword, Email);
+                return Redirect("/Account/LogOff"); //what's view you return here??
+            }
+            return Redirect("/Account/ChangePassword");
+        }
     }
 }

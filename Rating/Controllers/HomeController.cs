@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Rating.Models;
 using Domain.Repositories.Interfaces;
 using System.Web.Security;
+using DataAccess.Model;
 
 namespace Rating.Controllers
 {
@@ -29,7 +30,7 @@ namespace Rating.Controllers
             
             return View(_userRepository.GetAllUsers().Select(u=> UserModel.FromDomainModel(u)));
         }
-
+       // [Authorize(Roles = "admin" )]
         public ActionResult About(int id)
         {
             return View(UserModel.FromDomainModel(_userRepository.GetUser(id)));

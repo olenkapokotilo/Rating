@@ -3,6 +3,7 @@ using DataAccess.Model;
 using Domain.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,24 @@ namespace DataAccess.Repositories
             using (var entities = new Entities()) 
             {
                 entities.SaveChanges();
+            }
+        }
+        public void ChangePassword(string newPassword, string newRepeatPassword, string Email) 
+        {
+            using (var entities = new Entities()) 
+            {
+                if (newPassword == newRepeatPassword) 
+                {
+                    var user = this.GetUserByEmail(Email);
+                    user.Password = newPassword;
+                    entities.Entry(Mapper.Map<DataAccess.Model.User>(user)).State = EntityState.Modified;
+                    entities.SaveChanges();
+                    
+                }
+                else 
+                {
+                    throw new InvalidOperationException("passwords is different!");
+                }
             }
         }
     }
