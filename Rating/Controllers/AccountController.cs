@@ -20,21 +20,19 @@ namespace Rating.Controllers
     public class AccountController : Controller
     {
         private IUserRepository _userRepository;
-        //private C
         public AccountController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(string Email, string Password, bool forgotpass)
         {
             if (forgotpass == true)
@@ -91,9 +89,8 @@ namespace Rating.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult ChangePassword(string Email, string oldPassword, string newPassword, string newRepeatPassword, bool forgot)
+        public ActionResult ChangePassword(string Email, string oldPassword, string newPassword, string newRepeatPassword)
         {
-
             if (Membership.ValidateUser(Email, oldPassword) == true)
             {
                 _userRepository.ChangePassword(newPassword, newRepeatPassword, Email);
@@ -101,13 +98,5 @@ namespace Rating.Controllers
             }
             return Redirect("/Account/ChangePassword");
         }
-
-        [AllowAnonymous]
-        public string Confirm(string Email)
-        {
-            return "На почтовый адрес " + Email + " Вам высланы дальнейшие" +
-                    "инструкции по завершению регистрации";
-        }
-
     }
 }

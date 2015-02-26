@@ -51,7 +51,7 @@ namespace Rating.Providers
                 newUser.Password = Password;
                 if (RoleModel.FromDomainModel(_roleRepository.GetRole(1)) != null) 
                 {
-                    newUser.RoleId = 2;
+                    newUser.RoleId = 1;
                 }
                 _userRepository.Add(newUser.ToDomainModel());
                 return newUser;
