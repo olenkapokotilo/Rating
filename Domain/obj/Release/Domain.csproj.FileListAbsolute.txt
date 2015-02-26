@@ -1,0 +1,8 @@
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\Domain\bin\Release\Domain.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\Domain\bin\Release\Domain.pdb
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\Domain\obj\Release\Domain.dll
+C:\Users\eugene\documents\visual studio 2013\Projects\Rating\Domain\obj\Release\Domain.pdb
+E:\Lena\Development\Projects\Rating\Rating\Domain\bin\Release\Domain.dll
+E:\Lena\Development\Projects\Rating\Rating\Domain\bin\Release\Domain.pdb
+E:\Lena\Development\Projects\Rating\Rating\Domain\obj\Release\Domain.dll
+E:\Lena\Development\Projects\Rating\Rating\Domain\obj\Release\Domain.pdb
