@@ -16,6 +16,5 @@ namespace Domain.Repositories.Interfaces
         void Add(User user);
         void SaveChanges();
         void ChangePassword(string newPassword, string newRepeatPassword, string Email);
-        //public void ForgotPassword(string Email);
     }
 }

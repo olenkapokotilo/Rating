@@ -7,8 +7,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Mail;
-
 
 namespace DataAccess.Repositories
 {
@@ -77,14 +75,5 @@ namespace DataAccess.Repositories
                 }
             }
         }
-        //public void ForgotPassword(string Email) 
-        //{
-        //    using (var entities = new Entities()) 
-        //    {
-        //        var user = this.GetUserByEmail(Email);
-        //        string pass = user.Password;
-        //        //var appUser = new ApplicationUser() { };
-        //    }
-        //}
     }
 }

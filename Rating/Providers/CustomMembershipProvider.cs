@@ -62,7 +62,6 @@ namespace Rating.Providers
                 throw new InvalidOperationException("User already exists!");
             }
         }
-       
    
         //public override string ApplicationName
         //{

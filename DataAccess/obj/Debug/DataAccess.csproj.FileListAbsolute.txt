@@ -15,6 +15,9 @@ C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\bin\Debu
 C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\eugene\documents\visual studio 2013\Projects\Rating\DataAccess\obj\Debug\DataAccess.pdb
+E:\Lena\Development\Projects\Rating\Rating\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+E:\Lena\Development\Projects\Rating\Rating\DataAccess\obj\Debug\DataAccess.dll
+E:\Lena\Development\Projects\Rating\Rating\DataAccess\obj\Debug\DataAccess.pdb
 E:\Lena\Development\Projects\Rating\Rating\DataAccess\bin\Debug\DataAccess.dll.config
 E:\Lena\Development\Projects\Rating\Rating\DataAccess\bin\Debug\DataAccess.dll
 E:\Lena\Development\Projects\Rating\Rating\DataAccess\bin\Debug\DataAccess.pdb
@@ -29,6 +32,3 @@ E:\Lena\Development\Projects\Rating\Rating\DataAccess\bin\Debug\AutoMapper.xml
 E:\Lena\Development\Projects\Rating\Rating\DataAccess\bin\Debug\AutoMapper.Net4.pdb
 E:\Lena\Development\Projects\Rating\Rating\DataAccess\bin\Debug\EntityFramework.xml
 E:\Lena\Development\Projects\Rating\Rating\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
-E:\Lena\Development\Projects\Rating\Rating\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
-E:\Lena\Development\Projects\Rating\Rating\DataAccess\obj\Debug\DataAccess.dll
-E:\Lena\Development\Projects\Rating\Rating\DataAccess\obj\Debug\DataAccess.pdb
