@@ -28,6 +28,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
         </EntityType>
         <Association Name="FK_Project_User">
           <End Role="User" Type="Self.User" Multiplicity="1">
@@ -95,6 +96,7 @@
           <NavigationProperty Name="Projects" Relationship="RatingModel.FK_Project_User" FromRole="User" ToRole="Project" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="RatingModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -148,6 +150,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="RatingModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

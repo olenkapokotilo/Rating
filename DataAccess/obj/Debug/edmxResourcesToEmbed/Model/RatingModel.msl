@@ -4,6 +4,7 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="RatingModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Email" ColumnName="Email" />

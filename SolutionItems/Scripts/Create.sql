@@ -214,9 +214,23 @@ ALTER TABLE [User]
 ALTER COLUMN [RoleId] INT NOT NULL
 GO
 
-/*--------------------------------------------------------*/
+/*--------------------ADD Phone TO User------------------------------------*/
 
+USE [Rating]
+GO
 
+ALTER TABLE [User]
+ADD Phone varchar(15) DEFAULT '000-000-0000'
+GO
+
+UPDATE [User] 
+SET [Phone]= '000-000-0000' 
+WHERE [Phone] IS NULL
+GO
+
+ALTER TABLE [User]
+ALTER COLUMN [RoleId] INT NOT NULL
+GO
 
 
 

@@ -7,3 +7,8 @@ E:\Lena\Development\Projects\Rating\Rating\Domain\bin\Debug\Domain.pdb
 E:\Lena\Development\Projects\Rating\Rating\Domain\obj\Debug\Domain.dll
 E:\Lena\Development\Projects\Rating\Rating\Domain\obj\Debug\Domain.pdb
 E:\Lena\Development\Projects\Rating\Rating\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+E:\Lena\Development\Projects\Rating\Domain\bin\Debug\Domain.dll
+E:\Lena\Development\Projects\Rating\Domain\bin\Debug\Domain.pdb
+E:\Lena\Development\Projects\Rating\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+E:\Lena\Development\Projects\Rating\Domain\obj\Debug\Domain.dll
+E:\Lena\Development\Projects\Rating\Domain\obj\Debug\Domain.pdb
