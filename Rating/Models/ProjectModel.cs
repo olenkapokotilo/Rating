@@ -22,6 +22,7 @@ namespace Rating.Models
         {
             return Mapper.Map<Domain.Entities.Project>(this);
         }
+        public void Foo() { }
 
     }
 }
