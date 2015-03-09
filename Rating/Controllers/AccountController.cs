@@ -102,5 +102,7 @@ namespace Rating.Controllers
             return Redirect("//");
         }
 
+        public Foo(){}
+
     }
 }
