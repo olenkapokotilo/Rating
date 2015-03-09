@@ -33,32 +33,18 @@ namespace Rating.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(string Email, string Password, bool forgotpass)
+        public ActionResult Login(string Email, string Password)
         {
-            if (forgotpass == true)
+            if (Membership.ValidateUser(Email, Password) == true)
             {
-                var user = _userRepository.GetUserByEmail(Email);
-                if (user != null)
-                {
-                    UserEmailService.SendForgottenPassword(user.Email, user.Password);
-                    return View();
-                }
-                else
-                {
-                    throw new ArgumentException(string.Format("No user with the email '{0}' exists.", Email));
-                }
+                FormsAuthentication.SetAuthCookie(Email, false);
+                string Id = _userRepository.GetUserByEmail(Email).Id.ToString();//???
+                FormsAuthentication.SetAuthCookie(Id, false);
+                return Redirect("/Home/Index");
             }
             else
             {
-                if (Membership.ValidateUser(Email, Password) == true)
-                {
-                    FormsAuthentication.SetAuthCookie(Email, false);
-                    return Redirect("/Home/Index");
-                }
-                else
-                {
-                    return View();
-                }
+                return View();
             }
         }
         public ActionResult LogOff()
@@ -98,5 +84,23 @@ namespace Rating.Controllers
             }
             return Redirect("/Account/ChangePassword");
         }
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult ForgotPassword(string Email, string Phone)
+        {
+            UserModel user = UserModel.FromDomainModel(_userRepository.GetUserByEmail(Email));
+            if (user.Phone == Phone) 
+            {
+                
+            }
+
+            return Redirect("//");
+        }
+
     }
 }

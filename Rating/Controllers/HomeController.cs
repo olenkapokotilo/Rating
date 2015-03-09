@@ -25,9 +25,6 @@ namespace Rating.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-
-            //var user = _provider.CreateUser();
-            
             return View(_userRepository.GetAllUsers().Select(u=> UserModel.FromDomainModel(u)));
         }
        // [Authorize(Roles = "admin" )]

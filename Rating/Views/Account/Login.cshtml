@@ -5,8 +5,7 @@
         <form method="post" action="/Account/Login">
             <p>Login: </p><input type="text"  name="Email"/>
             <p>Password: </p><input type="password" name="Password" /><br/>
-            <input name="forgotpass" type="checkbox" value="true" />
-            <input name="forgotpass" type="hidden" value="false" />
+            @Html.ActionLink("Forgot password","ForgotPassword","Account")
             <input type="submit" value="login" />
         </form>
     </div>

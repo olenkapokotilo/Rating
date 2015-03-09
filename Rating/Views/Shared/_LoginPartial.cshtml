@@ -27,6 +27,7 @@ else
 @if (Request.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
+        <li></li>
         <li>
             <text>
                 Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!

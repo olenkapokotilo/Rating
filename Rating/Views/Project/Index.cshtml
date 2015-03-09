@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<Rating.Models.ProjectModel>
+<h2>Index</h2>
+<div>
+
+    <h3>Projects</h3>
+    <table>
+        <tr>
+            <td><p>Name</p></td>
+            <td></td>
+        </tr>
+       @foreach(var p in Model)
+                {
+                <tr>
+                        <td><p>@p.Name</p></td>
+                        <td><p>@p.User.Email</p></td>
+                </tr>
+                }
+    </table>
+</div>
+
+
+

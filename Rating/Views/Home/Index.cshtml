@@ -3,7 +3,7 @@
 
     <div>
        
-        <h3>Распродажа книг</h3>
+        <h3>Users</h3>
         <table>
             <tr>
                 <td><p>Email</p></td>
@@ -14,6 +14,7 @@
                 <tr>
                     <td><p>@u.Email    </p></td>
                     <td>@Html.ActionLink("About", "About", new { id = u.Id})</td>
+                    <td><a href="/Home/About/u.Id">About</a></td>
                     
                 </tr>
             }

@@ -62,29 +62,6 @@ namespace Rating.Providers
                 throw new InvalidOperationException("User already exists!");
             }
         }
-   
-        //public override string ApplicationName
-        //{
-        //    get
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //    set
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
-
-        //public override bool ChangePassword(string username, string oldPassword, string newPassword)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
 
         public override string ApplicationName
         {

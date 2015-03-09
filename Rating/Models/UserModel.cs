@@ -25,7 +25,5 @@ namespace Rating.Models
         {
             return Mapper.Map<Domain.Entities.User>(this);
         }
-
-        //IEnumerable<Project> Progects { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace Rating.CompositionRoot
 
             builder.RegisterType<DataAccess.Repositories.UserRepository>().As<IUserRepository>().SingleInstance();
             builder.RegisterType<DataAccess.Repositories.RoleRepository>().As<IRoleRepository>().SingleInstance();
+            builder.RegisterType<DataAccess.Repositories.ProjectRepository>().As<IProjectRepository>().SingleInstance();
+
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
