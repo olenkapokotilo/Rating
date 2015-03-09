@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Rating.Models.ProjectModel>
+
+<a class="project-link">Project</a>
+<ul class="projects-menu-list">
+    @foreach (var p in Model)
+    {
+        <li><a href="/Project/Edit/@p.Id">@p.Name</a></li>
+    }
+    <li> <a href="#"> + </a> </li>
+</ul>

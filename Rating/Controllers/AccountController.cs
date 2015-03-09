@@ -38,8 +38,8 @@ namespace Rating.Controllers
             if (Membership.ValidateUser(Email, Password) == true)
             {
                 FormsAuthentication.SetAuthCookie(Email, false);
-                string Id = _userRepository.GetUserByEmail(Email).Id.ToString();//???
-                FormsAuthentication.SetAuthCookie(Id, false);
+                var cookies = new HttpCookie("userId");
+                HttpContext.Response.Cookies["userId"].Value = _userRepository.GetUserByEmail(Email).Id.ToString(); 
                 return Redirect("/Home/Index");
             }
             else

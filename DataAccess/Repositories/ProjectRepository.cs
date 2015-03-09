@@ -56,8 +56,8 @@ namespace DataAccess.Repositories
         {
             using (var entities = new Entities()) 
             {
-                var projects = this.GetAllProject();
-                var result = projects.Where(p => p.User.Id == userId);
+                var projects = entities.Project.Where(p => p.User.Id == userId).ToList();
+                var result = Mapper.Map<IEnumerable<Domain.Entities.Project>>(projects);
                 return result;
 
             }

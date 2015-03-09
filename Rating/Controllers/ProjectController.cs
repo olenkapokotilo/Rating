@@ -18,9 +18,9 @@ namespace Rating.Controllers
             _projectRepository = projectRepository;
         }
         // GET: Project
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            return View(_projectRepository.GetAllProject(id).Select(p=> ProjectModel.FromDomainModel(p)));
+            return View( _projectRepository.GetAllProject().Select(p=> ProjectModel.FromDomainModel(p)));
         }
         public ActionResult Edit(int id) 
         {
@@ -33,10 +33,11 @@ namespace Rating.Controllers
             return Redirect("/Project/Index");
         }
         [Authorize]
-        public ActionResult ProjectMenu() 
+        public ActionResult ProjectMenu()
         {
-            return View(_projectRepository.GetAllProjectByUserId(id).Select(p => ProjectModel.FromDomainModel(p)));
-            
+            int id = Convert.ToInt32(HttpContext.Request.Cookies["userId"].Value);
+            return PartialView(_projectRepository.GetAllProjectByUserId(id).Select(p => ProjectModel.FromDomainModel(p)));
+
         }
     }
 }
