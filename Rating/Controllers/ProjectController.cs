@@ -39,7 +39,5 @@ namespace Rating.Controllers
             return PartialView(_projectRepository.GetAllProjectByUserId(id).Select(p => ProjectModel.FromDomainModel(p)));
 
         }
-
-        public void Foo() { }
     }
 }
