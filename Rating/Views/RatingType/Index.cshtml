@@ -4,7 +4,7 @@
             @foreach (var rt in Model)
             {
                 <tr>
-                    <td>@rt.Name   <a href="/RatingType/Edit">Edit</a>  <a href="/RatingType/Delete">Delete</a></td>
+                    <td>@rt.Name   <a href="/RatingType/Edit/@rt.Id">Edit</a>  <a href="/RatingType/Delete/@rt.Id">Delete</a></td>
                 </tr>
             }
             <tr>

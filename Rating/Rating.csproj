@@ -263,6 +263,8 @@
     <Content Include="Views\Project\ProjectMenu.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\RatingType\Index.cshtml" />
+    <Content Include="Views\RatingType\Edit.cshtml" />
+    <Content Include="Views\RatingType\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

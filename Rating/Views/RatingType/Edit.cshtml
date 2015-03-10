@@ -1,0 +1,8 @@
+﻿@model Rating.Models.RatingTypeModel
+<h2>Edit</h2>
+<form action="/RatingType/Edit" method="POST">
+    <input type="hidden" name="Id" value="@Model.Id"/>
+    <p>Name: </p><input type="text" name="Name" value="@Model.Name"/>  <br/>
+    <input type="submit" value="Edit"/>
+</form>
+
