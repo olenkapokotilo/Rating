@@ -10,6 +10,9 @@
         <AssociationConnector Association="RatingModel.FK_Project_User" />
         <EntityTypeShape EntityType="RatingModel.Role" Width="1.5" PointX="1.375" PointY="4.125" />
         <AssociationConnector Association="RatingModel.FK_User_Role" />
+        <EntityTypeShape EntityType="RatingModel.ActionType" Width="1.5" PointX="5.625" PointY="3.875" />
+        <EntityTypeShape EntityType="RatingModel.RatingType" Width="1.5" PointX="3.375" PointY="4.125" />
+        <AssociationConnector Association="RatingModel.FK_RatingType_ActionType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

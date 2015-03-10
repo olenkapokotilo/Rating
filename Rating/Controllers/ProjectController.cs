@@ -39,5 +39,24 @@ namespace Rating.Controllers
             return PartialView(_projectRepository.GetAllProjectByUserId(id).Select(p => ProjectModel.FromDomainModel(p)));
 
         }
+        public ActionResult Create() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(ProjectModel newProject) 
+        {
+            ProjectModel project = Mapper.Map<Rating.Models.ProjectModel>(_projectRepository.GetProjectByName(newProject.Name.ToString()));
+            if (project == null)
+            {
+                newProject.UserId = Convert.ToInt32(HttpContext.Request.Cookies["userId"].Value);
+                _projectRepository.Create(Mapper.Map<Domain.Entities.Project>(newProject));
+                return Redirect("/Project/Index");
+            }
+            else
+            {
+                throw new InvalidOperationException("Project already exists!");
+            }
+        }
     }
 }

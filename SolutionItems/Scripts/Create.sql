@@ -214,8 +214,8 @@ ALTER TABLE [User]
 ALTER COLUMN [RoleId] INT NOT NULL
 GO
 
-/*--------------------ADD Phone TO User------------------------------------*/
 
+/*------------------ADD Phone TO User--------------------------------------*/
 USE [Rating]
 GO
 
@@ -227,13 +227,70 @@ UPDATE [User]
 SET [Phone]= '000-000-0000' 
 WHERE [Phone] IS NULL
 GO
-
 ALTER TABLE [User]
-ALTER COLUMN [RoleId] INT NOT NULL
+ALTER COLUMN [Phone] INT NOT NULL
 GO
 
 
+/*------------------ADD TABLE RatingType--------------------------------------*/
+USE [Rating]
+GO
 
+/****** Object:  Table [dbo].[RatingType]    Script Date: 10.03.2015 15:52:43 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[RatingType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_RatingType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/*------------------ADD TABLE ActionType--------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Table [dbo].[ActionType]    Script Date: 10.03.2015 15:58:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ActionType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Scores] [int] NOT NULL,
+ CONSTRAINT [PK_ActionType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+/*------------------ADD RatingTypeId TO ActionType--------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [ActionType]
+ADD RatingTypeId INT DEFAULT(1)
+GO
+ALTER TABLE [ActionType]
+ADD CONSTRAINT FK_RatingType_ActionType
+FOREIGN KEY (RatingTypeId)
+REFERENCES RatingType(Id)
+GO
+UPDATE [ActionType] SET [RatingTypeId] =1 WHERE [RatingTypeId] IS NULL
+GO
+ALTER TABLE [ActionType]
+ALTER COLUMN [RatingTypeId] INT NOT NULL
+GO
 
 
 

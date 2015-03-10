@@ -24,15 +24,20 @@ namespace DataAccess.Startup
             Mapper.CreateMap<DA.User, D.User>();
             Mapper.CreateMap<DA.Project, D.Project>();
             Mapper.CreateMap<DA.Role, D.Role>();
+            Mapper.CreateMap<DA.RatingType, D.RatingType>();
+
         }
 
         private static void RegisterFromDomainToDataAccess()
         {
             Mapper.CreateMap<D.User, DA.User>()
                     .ForMember(daRole=> daRole.Role, opt=> opt.Ignore());
-            Mapper.CreateMap<D.Project, DA.Project>();
+            Mapper.CreateMap<D.Project, DA.Project>()
+                    .ForMember(daProject => daProject.User, opt => opt.Ignore());
             Mapper.CreateMap<D.Role, DA.Role>()
                     .ForMember(daRole => daRole.Users, opt => opt.Ignore());
+            Mapper.CreateMap<D.RatingType, DA.RatingType>()
+                    .ForMember(daRatingType => daRatingType.ActionTypes, opt => opt.Ignore());
         }
     }
 }

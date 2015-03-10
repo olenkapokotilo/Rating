@@ -35,7 +35,7 @@ namespace DataAccess.Repositories
         {
             using(var entities = new Entities())
             {
-                var dbProject = entities.Project.Single(p => p.Name == name);
+                var dbProject = entities.Project.SingleOrDefault(p => p.Name == name);
                 var result = Mapper.Map<Domain.Entities.Project>(dbProject);
                 return result;
             }
@@ -46,7 +46,7 @@ namespace DataAccess.Repositories
             {
                 var project = this.GetProject(newProject.Id);
                 project.Name = newProject.Name;
-                project.User.Id = newProject.User.Id;
+                project.UserId = newProject.UserId;
                 entities.Entry(Mapper.Map<DataAccess.Model.Project>(project)).State = EntityState.Modified;
                 entities.SaveChanges();
 
@@ -56,10 +56,18 @@ namespace DataAccess.Repositories
         {
             using (var entities = new Entities()) 
             {
-                var projects = entities.Project.Where(p => p.User.Id == userId).ToList();
+                var projects = entities.Project.Where(p => p.UserId == userId).ToList();
                 var result = Mapper.Map<IEnumerable<Domain.Entities.Project>>(projects);
                 return result;
 
+            }
+        }
+        public void Create(Domain.Entities.Project project) 
+        {
+            using (var entities = new Entities()) 
+            {
+                entities.Project.Add(Mapper.Map<DataAccess.Model.Project>(project));
+                entities.SaveChanges();
             }
         }
     }

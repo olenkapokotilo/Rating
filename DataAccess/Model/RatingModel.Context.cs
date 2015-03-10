@@ -28,5 +28,7 @@ namespace DataAccess.Model
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<ActionType> ActionType { get; set; }
+        public virtual DbSet<RatingType> RatingType { get; set; }
     }
 }

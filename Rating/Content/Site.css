@@ -30,6 +30,8 @@ textarea {
 .project-link ul
 {
     display: none;
+    background-color: white;
+    position: absolute;
 }
 
 .project-link:hover > ul{

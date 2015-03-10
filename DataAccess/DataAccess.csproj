@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ActionType.cs">
+      <DependentUpon>RatingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Project.cs">
       <DependentUpon>RatingModel.tt</DependentUpon>
     </Compile>
@@ -74,6 +77,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RatingModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\RatingType.cs">
+      <DependentUpon>RatingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Role.cs">
       <DependentUpon>RatingModel.tt</DependentUpon>
     </Compile>
@@ -82,6 +88,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
+    <Compile Include="Repositories\RatingTypeRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Startup\MappingConfiguration.cs" />
