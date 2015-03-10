@@ -25,6 +25,7 @@ namespace Rating
             Mapper.CreateMap<R.UserModel, D.User>();
             Mapper.CreateMap<R.RoleModel, D.Role>();
             Mapper.CreateMap<R.RatingTypeModel, D.RatingType>();
+            Mapper.CreateMap<R.ActionTypeModel, D.ActionType>();
            
         }
 
@@ -34,6 +35,8 @@ namespace Rating
             Mapper.CreateMap<D.User, R.UserModel>();
             Mapper.CreateMap<D.Role, R.RoleModel>();
             Mapper.CreateMap<D.RatingType, R.RatingTypeModel>();
+            Mapper.CreateMap<D.ActionType, R.ActionTypeModel>();
+
         }
 
     }

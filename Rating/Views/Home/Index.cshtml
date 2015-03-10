@@ -13,9 +13,7 @@
             {
                 <tr>
                     <td><p>@u.Email    </p></td>
-                    <td>@Html.ActionLink("About", "About", new { id = u.Id})</td>
-                    <td><a href="/Home/About/u.Id">About</a></td>
-                    
+                    <td><a href="/Home/About/@u.Id">About</a></td>
                 </tr>
             }
         </table>

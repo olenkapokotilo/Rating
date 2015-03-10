@@ -32,6 +32,7 @@ namespace Rating.Controllers
         [HttpPost]
         public ActionResult Edit(Rating.Models.RatingTypeModel ratingType)
         {
+            //exist?
             _ratingTypeRepository.Edit(Mapper.Map<Domain.Entities.RatingType>(ratingType));
             return Redirect("/RatingType/Index");
         }

@@ -39,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ActionType.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\RatingType.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Interfaces\IActionTypeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IProjectRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRatingTypeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />

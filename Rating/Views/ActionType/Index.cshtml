@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Rating.Models.ActionTypeModel>
+<h3>ActionType</h3>
+<table>
+    @foreach (var at in Model) 
+    {
+        <tr>
+            <td>@at.Name  <a href="/ActionType/Edit/@at.Id">Edit</a>  <a href="/Actiontype/Delete/@at.Id">Delete</a></td>
+        </tr>
+    }
+    <tr>
+        <td><a href="/ActionType/Create"> + </a></td>
+    </tr>
+</table>

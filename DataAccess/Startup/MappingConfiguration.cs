@@ -25,7 +25,7 @@ namespace DataAccess.Startup
             Mapper.CreateMap<DA.Project, D.Project>();
             Mapper.CreateMap<DA.Role, D.Role>();
             Mapper.CreateMap<DA.RatingType, D.RatingType>();
-
+            Mapper.CreateMap<DA.ActionType, D.ActionType>();
         }
 
         private static void RegisterFromDomainToDataAccess()
@@ -38,6 +38,8 @@ namespace DataAccess.Startup
                     .ForMember(daRole => daRole.Users, opt => opt.Ignore());
             Mapper.CreateMap<D.RatingType, DA.RatingType>()
                     .ForMember(daRatingType => daRatingType.ActionTypes, opt => opt.Ignore());
+            Mapper.CreateMap<D.ActionType, DA.ActionType>()
+                    .ForMember(daActionType => daActionType.RatingType, opt => opt.Ignore());
         }
     }
 }
