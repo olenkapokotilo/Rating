@@ -18,7 +18,7 @@ namespace Rating.Models
             return Mapper.Map<ActionTypeModel>(domainActionType);
         }
 
-        public Domain.Entities.ActionType ToDomainModel()
+        public  Domain.Entities.ActionType ToDomainModel()
         {
             return Mapper.Map<Domain.Entities.ActionType>(this);
         }

@@ -21,6 +21,15 @@ namespace DataAccess.Repositories
                 return result;
             }
         }
+        public IEnumerable<Domain.Entities.ActionType> GetAllActionTypeByRatingType(int id)
+        {
+            using (var entities = new Entities())
+            {
+                var dbActionType = entities.ActionType.Where(at => at.RatingTypeId == id);
+                var result = Mapper.Map<IEnumerable<Domain.Entities.ActionType>>(dbActionType);
+                return result;
+            }
+        }
         public Domain.Entities.ActionType GetActionType(int id)
         {
             using (var entities = new Entities())

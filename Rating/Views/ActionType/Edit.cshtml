@@ -1,0 +1,11 @@
+﻿@model Rating.Models.ActionTypeModel
+<h2>Edit</h2>
+<form action="/ActionType/Edit" method="POST">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <p>Name: </p><input type="text" name="Name" value="@Model.Name" />  
+    <p>Scores: </p><input type="text" name="Scores" value="@Model.Scores" />  <br /><br />
+    <input type="hidden" name="RatingTypeId" value="@Model.RatingTypeId" />
+    <input type="submit" value="Edit" />
+</form>
+@{Html.RenderAction("Index", "ActionType");}
+

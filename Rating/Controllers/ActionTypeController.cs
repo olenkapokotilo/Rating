@@ -17,9 +17,10 @@ namespace Rating.Controllers
             _actionTypeRepository = actionTypeRepository;
         }
         // GET: ActionType
-        public ActionResult Index()
+         public ActionResult List(int ratingTypeId)
         {
-            return PartialView(_actionTypeRepository.GetAllActionType().Select(at=> ActionTypeModel.FromDomainModel(at)));
+            return PartialView(
+                _actionTypeRepository.GetAllActionTypeByRatingType(ratingTypeId).Select(a => ActionTypeModel.FromDomainModel(a)));
         }
         public ActionResult Delete(string id) 
         {
@@ -37,13 +38,23 @@ namespace Rating.Controllers
             var at = ActionTypeModel.FromDomainModel(_actionTypeRepository.GetActionType(actionType.Id));
             if(at == null)
             {
-                _actionTypeRepository.Create(Mapper.Map<Domain.Entities.ActionType>(actionType));
+                _actionTypeRepository.Create(actionType.ToDomainModel());
                 return Redirect("/ActionType/Index");
             }
             else 
             {
                 throw new InvalidOperationException("ActionType already exists!");
             }
+        }
+        public ActionResult Edit(int id) 
+        {
+            return View(ActionTypeModel.FromDomainModel(_actionTypeRepository.GetActionType(id)));
+        }
+        [HttpPost]
+        public ActionResult Edit(ActionTypeModel actionType) 
+        {
+            _actionTypeRepository.Edit(Mapper.Map<Domain.Entities.ActionType>(actionType));
+            return Redirect("/Actiontype/Index");
         }
         
     }

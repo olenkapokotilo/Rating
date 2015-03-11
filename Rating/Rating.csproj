@@ -267,7 +267,9 @@
     <Content Include="Views\RatingType\Index.cshtml" />
     <Content Include="Views\RatingType\Edit.cshtml" />
     <Content Include="Views\RatingType\Create.cshtml" />
-    <Content Include="Views\ActionType\Index.cshtml" />
+    <Content Include="Views\ActionType\List.cshtml" />
+    <Content Include="Views\ActionType\Create.cshtml" />
+    <Content Include="Views\ActionType\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
