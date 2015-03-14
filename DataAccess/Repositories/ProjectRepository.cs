@@ -70,5 +70,15 @@ namespace DataAccess.Repositories
                 entities.SaveChanges();
             }
         }
+        public void Delete(int id)
+        {
+            using (var entities = new Entities())
+            {
+                var project = this.GetProject(id);
+                entities.Entry(Mapper.Map<DataAccess.Model.Project>(project)).State = EntityState.Deleted;
+                entities.SaveChanges();
+
+            }
+        }
     }
 }

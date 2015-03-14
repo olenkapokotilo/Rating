@@ -18,39 +18,32 @@ namespace Rating.Controllers
         }
         // GET: ActionType
 
-        public ActionResult Delete(string id) 
+        public void Delete(string id) 
         {
             int actionTypeId = Convert.ToInt32(id);
             _actionTypeRepository.Delete(actionTypeId);
-            return Redirect("/ActionType/List");
+            //return Redirect("/ActionType/List");
         }
-        public ActionResult Create() 
+        public ActionResult Create(int ratingTypeId) 
         {
-            return View();
+            return View(ratingTypeId);
         }
         [HttpPost]
         public ActionResult Create(Rating.Models.ActionTypeModel actionType) 
         {
-            var at = ActionTypeModel.FromDomainModel(_actionTypeRepository.GetActionType(actionType.Id));
-            if(at == null)
-            {
                 _actionTypeRepository.Create(actionType.ToDomainModel());
-                return Redirect("/ActionType/List");
-            }
-            else 
-            {
-                throw new InvalidOperationException("ActionType already exists!");
-            }
+                return Redirect("~/RatingType/Edit/" + actionType.RatingTypeId.ToString());
         }
-        public ActionResult Edit(int id) 
+        public ActionResult Edit(string id)
         {
-            return View(ActionTypeModel.FromDomainModel(_actionTypeRepository.GetActionType(id)));
+            var actionTypeId = Convert.ToInt32(id);
+            return View(ActionTypeModel.FromDomainModel(_actionTypeRepository.GetActionType(actionTypeId)));
         }
         [HttpPost]
         public ActionResult Edit(ActionTypeModel actionType) 
         {
-            _actionTypeRepository.Edit(Mapper.Map<Domain.Entities.ActionType>(actionType));
-            return Redirect("/Actiontype/List");
+                _actionTypeRepository.Edit(actionType.ToDomainModel());
+                return Redirect("~/RatingType/Edit/" + actionType.RatingTypeId.ToString());
         }
         
     }

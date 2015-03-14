@@ -7,13 +7,14 @@
     <table>
         <tr>
             <td><p>Name</p></td>
-            <td></td>
+            <td>        </td>
         </tr>
        @foreach(var p in Model)
                 {
                 <tr>
-                        <td><p>@p.Name</p></td>
-                        <td><p>@p.UserId</p></td>
+                    <td><p>@p.Name     </p></td>
+                    <td><p>    @p.UserId</p></td>
+                    <td><a href="/Project/Delete/@p.Id">  Delete</a></td>
                 </tr>
                 }
     </table>

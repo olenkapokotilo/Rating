@@ -1,7 +1,9 @@
-﻿<h2>Create</h2>
+﻿@model int
+<h2>Create</h2>
 <form action="/ActionType/Create" method="POST">
     <p>Name: </p><input type="text" name="Name" />
     <p>Scores: </p><input type="text" name="Scores" /><br />
+    <input type="hidden" name="RatingTypeId" value="@Model" /><br />
     <input type="submit" value="Create" />
 </form>
 

@@ -27,16 +27,23 @@ namespace Rating.Controllers
         [HttpPost]
         public ActionResult Edit(Rating.Models.RatingTypeModel ratingType)
         {
-            //exist?
-            _ratingTypeRepository.Edit(Mapper.Map<Domain.Entities.RatingType>(ratingType));
-            return Redirect("~/Project/Edit/"+ ratingType.ProjectId.ToString());
+             var at = RatingTypeModel.FromDomainModel(_ratingTypeRepository.GetRatingType(ratingType.Id));
+            if (at == null)
+            {
+                _ratingTypeRepository.Edit((ratingType).ToDomainModel());
+                return Redirect("~/Project/Edit/"+ ratingType.ProjectId.ToString());
+            }
+            else
+            {
+                throw new InvalidOperationException("This rating type exsist already!!!");
+            }
         }
 
-        public ActionResult Delete(string id)
+        public void Delete(string id)
         {
             int ratingTypeId = Convert.ToInt32(id);
             _ratingTypeRepository.Delete(ratingTypeId);
-            return Redirect("~/Project/Edit/" + ratingType.ProjectId.ToString());
+           // return Redirect("~/Project/Edit/" + ratingType.ProjectId.ToString());
         }
 
         public ActionResult Create(int id)
@@ -47,8 +54,8 @@ namespace Rating.Controllers
         [HttpPost]
         public ActionResult Create(RatingTypeModel ratingType)
         {
-            _ratingTypeRepository.Create(Mapper.Map<Domain.Entities.RatingType>(ratingType));
-            return Redirect("~/Project/Edit/" + ratingType.ProjectId.ToString());
+                _ratingTypeRepository.Create(Mapper.Map<Domain.Entities.RatingType>(ratingType));
+                return Redirect("~/Project/Edit/" + ratingType.ProjectId.ToString());
         }
     }
 }

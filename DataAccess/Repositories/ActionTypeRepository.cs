@@ -30,6 +30,15 @@ namespace DataAccess.Repositories
                 return result;
             }
         }
+        public Domain.Entities.ActionType GetActionTypeByName(string name)
+        {
+            using (var entities = new Entities())
+            {
+                var dbActionType = entities.ActionType.SingleOrDefault(at => at.Name == name);
+                var result = Mapper.Map<Domain.Entities.ActionType>(dbActionType);
+                return result;
+            }
+        }
         public Domain.Entities.ActionType GetActionType(int id)
         {
             using (var entities = new Entities())

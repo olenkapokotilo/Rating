@@ -11,6 +11,7 @@ namespace Domain.Repositories.Interfaces
         Domain.Entities.ActionType GetActionType(int id);
         IEnumerable<Domain.Entities.ActionType> GetAllActionType();
         IEnumerable<Domain.Entities.ActionType> GetAllActionTypeByRatingType(int id);
+        Domain.Entities.ActionType GetActionTypeByName(string name);
         void Edit(Domain.Entities.ActionType actionType);
         void Create(Domain.Entities.ActionType actionType);
         void Delete(int id);

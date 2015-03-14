@@ -30,7 +30,7 @@ namespace Rating.Controllers
         public ActionResult Edit(ProjectModel project) 
         {
             _projectRepository.Edit(Mapper.Map<Domain.Entities.Project>(project));
-            return Redirect("/Project/Index");
+            return Redirect("/Project/List");
         }
         [Authorize]
         public ActionResult ProjectMenu()
@@ -46,17 +46,13 @@ namespace Rating.Controllers
         [HttpPost]
         public ActionResult Create(ProjectModel newProject) 
         {
-            ProjectModel project = Mapper.Map<Rating.Models.ProjectModel>(_projectRepository.GetProjectByName(newProject.Name.ToString()));
-            if (project == null)
-            {
                 newProject.UserId = Convert.ToInt32(HttpContext.Request.Cookies["userId"].Value);
-                _projectRepository.Create(Mapper.Map<Domain.Entities.Project>(newProject));
-                return Redirect("/Project/Index");
-            }
-            else
-            {
-                throw new InvalidOperationException("Project already exists!");
-            }
+                _projectRepository.Create(newProject.ToDomainModel());
+                return Redirect("/Project/List");
+        }
+        public void Delete(int id)
+        {
+            _projectRepository.Delete(id);
         }
     }
 }

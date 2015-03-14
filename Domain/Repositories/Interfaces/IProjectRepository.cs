@@ -15,6 +15,7 @@ namespace Domain.Repositories.Interfaces
         IEnumerable<Domain.Entities.Project> GetAllProjectByUserId(int userId);
         void Edit(Domain.Entities.Project project);
         void Create(Domain.Entities.Project project);
+        void Delete(int id);
 
     }
 }
