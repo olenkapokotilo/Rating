@@ -291,8 +291,22 @@ GO
 ALTER TABLE [ActionType]
 ALTER COLUMN [RatingTypeId] INT NOT NULL
 GO
-
-
-
+/*------------------ADD ProjectId in RatingType--------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [RatingType]
+ADD ProjectId INT DEFAULT(1)
+GO
+ALTER TABLE [RatingType]
+ADD CONSTRAINT FK_Project_RatingType
+FOREIGN KEY (ProjectId)
+REFERENCES Project(Id)
+GO
+UPDATE [RatingType] SET [ProjectId] =1 WHERE [ProjectId] IS NULL
+GO
+ALTER TABLE [RatingType]
+ALTER COLUMN [ProjectId] INT NOT NULL
+GO
+/*------------------ADD ProjectId in RatingType--------------------------------------*/
 
 

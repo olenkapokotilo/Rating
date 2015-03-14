@@ -10,5 +10,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int ProjectId { get; set; }
+        public ICollection<ActionType> ActionTypes { get; set; }
     }
 }

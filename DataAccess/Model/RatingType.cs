@@ -21,7 +21,9 @@ namespace DataAccess.Model
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public int ProjectId { get; set; }
     
         public virtual ICollection<ActionType> ActionTypes { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

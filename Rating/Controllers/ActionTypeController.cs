@@ -17,16 +17,12 @@ namespace Rating.Controllers
             _actionTypeRepository = actionTypeRepository;
         }
         // GET: ActionType
-         public ActionResult List(int ratingTypeId)
-        {
-            return PartialView(
-                _actionTypeRepository.GetAllActionTypeByRatingType(ratingTypeId).Select(a => ActionTypeModel.FromDomainModel(a)));
-        }
+
         public ActionResult Delete(string id) 
         {
             int actionTypeId = Convert.ToInt32(id);
             _actionTypeRepository.Delete(actionTypeId);
-            return Redirect("/ActionType/Index");
+            return Redirect("/ActionType/List");
         }
         public ActionResult Create() 
         {
@@ -39,7 +35,7 @@ namespace Rating.Controllers
             if(at == null)
             {
                 _actionTypeRepository.Create(actionType.ToDomainModel());
-                return Redirect("/ActionType/Index");
+                return Redirect("/ActionType/List");
             }
             else 
             {
@@ -54,7 +50,7 @@ namespace Rating.Controllers
         public ActionResult Edit(ActionTypeModel actionType) 
         {
             _actionTypeRepository.Edit(Mapper.Map<Domain.Entities.ActionType>(actionType));
-            return Redirect("/Actiontype/Index");
+            return Redirect("/Actiontype/List");
         }
         
     }

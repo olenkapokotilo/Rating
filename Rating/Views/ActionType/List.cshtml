@@ -1,13 +1,13 @@
-﻿@model IEnumerable<Rating.Models.ActionTypeModel>
+﻿@model Rating.Models.RatingTypeModel
 <h3>ActionType</h3>
 <table>
-    @foreach (var at in Model) 
+    @foreach (var at in Model.ActionTypes) 
     {
         <tr>
             <td>@at.Name  <a href="/ActionType/Edit/@at.Id">Edit</a>  <a href="/Actiontype/Delete/@at.Id">Delete</a></td>
         </tr>
     }
     <tr>
-        <td><a href="/ActionType/Create"> + </a></td>
+        <td><a href="/ActionType/Create/@Model.ProjectId"> + </a></td>
     </tr>
 </table>

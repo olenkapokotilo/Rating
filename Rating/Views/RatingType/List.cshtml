@@ -1,0 +1,14 @@
+﻿@model Rating.Models.ProjectModel
+<h2>RatingType List</h2>
+    <table>
+           @foreach (var rt in Model.RatingTypes)
+           {
+
+                <tr>
+                     <td>@rt.Name   <a href="/RatingType/Edit/@rt.Id">Edit</a>  <a href="/RatingType/Delete/@rt.Id">Delete</a></td>
+                </tr>
+           }
+            <tr>
+                <td><a href="/RatingType/Create/@Model.Id"> + </a></td>
+            </tr>
+    </table>

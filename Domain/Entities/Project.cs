@@ -11,5 +11,6 @@ namespace Domain.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
+        public ICollection<RatingType> RatingTypes { get; set; }
     }
 }

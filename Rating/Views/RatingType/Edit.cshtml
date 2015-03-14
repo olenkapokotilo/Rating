@@ -3,8 +3,9 @@
 <form action="/RatingType/Edit" method="POST">
     <input type="hidden" name="Id" value="@Model.Id"/>
     <p>Name: </p><input type="text" name="Name" value="@Model.Name"/>  <br/>
+    <input type="hidden" name="ProjectId" value="@Model.ProjectId" />  <br />
     <input type="submit" value="Edit"/>
 </form>
-@{Html.RenderAction("List", "ActionType", new { ratingTypeId = Model.Id });}
+@{Html.RenderPartial("~/Views/ActionType/List.cshtml", Model);}
 
 

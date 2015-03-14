@@ -1,11 +1,11 @@
 ﻿@model Rating.Models.ProjectModel
-
 <h2>Edit project @Model.Name</h2>
+
 <form action="/Project/Edit" method="post">
     <input type="hidden" value="@Model.Id" name="id"/>
-    <p>Name  </p><input type="text" value="@Model.Name" name="name"/>
-    <input type="hidden" value="@Model.UserId" name="userId" />
+    <p>Name  </p><input type="text" value="@Model.Name" name="Name"/>
+    <input type="hidden" value="@Model.UserId" name="UserId" />
     <input  type="submit" value="edit"/>
 </form>
-@{Html.RenderAction("Index", "RatingType");}
+@{ Html.RenderPartial("~/Views/RatingType/List.cshtml", Model);}
 

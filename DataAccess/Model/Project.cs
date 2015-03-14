@@ -14,10 +14,16 @@ namespace DataAccess.Model
     
     public partial class Project
     {
+        public Project()
+        {
+            this.RatingTypes = new HashSet<RatingType>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
     
         public virtual User User { get; set; }
+        public virtual ICollection<RatingType> RatingTypes { get; set; }
     }
 }

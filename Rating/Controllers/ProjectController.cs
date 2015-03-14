@@ -18,7 +18,7 @@ namespace Rating.Controllers
             _projectRepository = projectRepository;
         }
         // GET: Project
-        public ActionResult Index()
+        public ActionResult List()
         {
             return View( _projectRepository.GetAllProject().Select(p=> ProjectModel.FromDomainModel(p)));
         }

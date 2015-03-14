@@ -28,6 +28,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -46,6 +47,18 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="15" />
         </EntityType>
+        <Association Name="FK_Project_RatingType">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="RatingType" Type="Self.RatingType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingType">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Project_User">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -90,6 +103,10 @@
           <EntitySet Name="RatingType" EntityType="Self.RatingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Project_RatingType" Association="Self.FK_Project_RatingType">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="RatingType" EntitySet="RatingType" />
+          </AssociationSet>
           <AssociationSet Name="FK_Project_User" Association="Self.FK_Project_User">
             <End Role="User" EntitySet="User" />
             <End Role="Project" EntitySet="Project" />
@@ -125,6 +142,10 @@
             <End Role="RatingType" EntitySet="RatingType" />
             <End Role="ActionType" EntitySet="ActionType" />
           </AssociationSet>
+          <AssociationSet Name="FK_Project_RatingType" Association="RatingModel.FK_Project_RatingType">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="RatingType" EntitySet="RatingType" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -146,6 +167,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="RatingModel.FK_Project_User" FromRole="Project" ToRole="User" />
+          <NavigationProperty Name="RatingTypes" Relationship="RatingModel.FK_Project_RatingType" FromRole="Project" ToRole="RatingType" />
         </EntityType>
         <Association Name="FK_Project_User">
           <End Type="RatingModel.User" Role="User" Multiplicity="1">
@@ -198,6 +220,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ActionTypes" Relationship="RatingModel.FK_RatingType_ActionType" FromRole="RatingType" ToRole="ActionType" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="RatingModel.FK_Project_RatingType" FromRole="RatingType" ToRole="Project" />
         </EntityType>
         <Association Name="FK_RatingType_ActionType">
           <End Type="RatingModel.RatingType" Role="RatingType" Multiplicity="1" />
@@ -208,6 +232,18 @@
             </Principal>
             <Dependent Role="ActionType">
               <PropertyRef Name="RatingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_RatingType">
+          <End Type="RatingModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="RatingModel.RatingType" Role="RatingType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingType">
+              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -258,6 +294,7 @@
           <EntitySetMapping Name="RatingType">
             <EntityTypeMapping TypeName="RatingModel.RatingType">
               <MappingFragment StoreEntitySet="RatingType">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

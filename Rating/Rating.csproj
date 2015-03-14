@@ -261,10 +261,10 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Shared\ProjectMenu.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
-    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\List.cshtml" />
     <Content Include="Views\Project\ProjectMenu.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
-    <Content Include="Views\RatingType\Index.cshtml" />
+    <Content Include="Views\RatingType\List.cshtml" />
     <Content Include="Views\RatingType\Edit.cshtml" />
     <Content Include="Views\RatingType\Create.cshtml" />
     <Content Include="Views\ActionType\List.cshtml" />
