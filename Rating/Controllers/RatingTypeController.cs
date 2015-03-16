@@ -39,11 +39,11 @@ namespace Rating.Controllers
             }
         }
 
-        public void Delete(string id)
+        public ActionResult Delete(string id)
         {
             int ratingTypeId = Convert.ToInt32(id);
             _ratingTypeRepository.Delete(ratingTypeId);
-           // return Redirect("~/Project/Edit/" + ratingType.ProjectId.ToString());
+            return Redirect("~/Project/Edit/" + RouteData.Values["projectId"].ToString());
         }
 
         public ActionResult Create(int id)

@@ -4,9 +4,10 @@
            @foreach (var rt in Model.RatingTypes)
            {
 
-                <tr>
-                     <td>@rt.Name   <a href="/RatingType/Edit/@rt.Id">Edit</a>  <a href="/RatingType/Delete/@rt.Id">Delete</a></td>
-                </tr>
+               <tr>
+                   <td>@rt.Name @Html.ActionLink("Edit", "Edit", "RatingType", new { projectId = @Model.Id, id = @rt.Id }, null)    
+                    @Html.ActionLink("Delete", "Delete","RatingType", new { projectId = @Model.Id, id=@rt.Id }, null)</td>
+               </tr>
            }
             <tr>
                 <td><a href="/RatingType/Create/@Model.Id"> + </a></td>

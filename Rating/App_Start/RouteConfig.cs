@@ -14,7 +14,7 @@ namespace Rating
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                 name: "Project",
-                url: "Poject/{projectId}/{controller}/{action}/{id}",
+                url: "Poject/{projectId}/RatingType/{action}/{id}",
                 defaults: new { controller = "RatingType", id = UrlParameter.Optional }
             );
 
