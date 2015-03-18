@@ -4,7 +4,8 @@
     @foreach (var at in Model.ActionTypes) 
     {
         <tr>
-            <td>@at.Name  <a href="/ActionType/Edit/@at.Id">Edit</a>  <a href="/Actiontype/Delete/@at.Id">Delete</a></td>
+            <td>@at.Name   @Html.ActionLink("Edit", "Edit", "ActionType", new { ratingTypeId = @Model.Id, id = @at.Id }, null) 
+                @Html.ActionLink("Delete", "Delete", "ActionType", new { ratingTypeId = @Model.Id, id = @at.Id }, null)</td>
         </tr>
     }
     <tr>

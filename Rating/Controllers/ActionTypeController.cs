@@ -18,11 +18,11 @@ namespace Rating.Controllers
         }
         // GET: ActionType
 
-        public void Delete(string id) 
+        public ActionResult Delete(string id) 
         {
             int actionTypeId = Convert.ToInt32(id);
             _actionTypeRepository.Delete(actionTypeId);
-            //return Redirect("/ActionType/List");
+            return Redirect("~/RatingType/Edit/" + RouteData.Values["ratingTypeId"].ToString());
         }
         public ActionResult Create(int ratingTypeId) 
         {

@@ -17,6 +17,11 @@ namespace Rating
                 url: "Poject/{projectId}/RatingType/{action}/{id}",
                 defaults: new { controller = "RatingType", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "RatingType",
+                url: "RatingType/{ratingTypeId}/ActionType/{action}/{id}",
+                defaults: new { controller = "ActionType", id = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",
