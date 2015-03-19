@@ -50,9 +50,10 @@ namespace Rating.Controllers
                 _projectRepository.Create(newProject.ToDomainModel());
                 return Redirect("/Project/List");
         }
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             _projectRepository.Delete(id);
+            return Redirect("~/Project/List/");
         }
     }
 }
