@@ -1,17 +1,8 @@
 ﻿@model  Rating.Models.UserModel
-
-
-<p>info</p>
-<table>
-    <tr>
-        <td>@Model.Id</td>
-        <td>@Model.Email</td>
-        <td>@Model.Password</td>
-        <td>@Model.Phone</td>
-        @foreach(var p in Model.Projects)
-        {}
-    </tr>
-</table>
+<h3>info</h3>
+<p>Name : @Model.Email</p>
+<p>Phone : @Model.Phone</p>
+@{ Html.RenderPartial("~/Views/Project/List.cshtml", Model.Projects);}
 <a href="@Url.Action("Index", "Home")">Index Home</a>
 
 
