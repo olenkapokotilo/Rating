@@ -18,10 +18,9 @@ namespace Rating.Controllers
         }
         // GET: ActionType
 
-        public ActionResult Delete(string id) 
+        public ActionResult Delete(int id) 
         {
-            int actionTypeId = Convert.ToInt32(id);
-            _actionTypeRepository.Delete(actionTypeId);
+            _actionTypeRepository.Delete(id);
             return Redirect("~/RatingType/Edit/" + RouteData.Values["ratingTypeId"].ToString());
         }
         public ActionResult Create(int ratingTypeId) 
@@ -31,19 +30,32 @@ namespace Rating.Controllers
         [HttpPost]
         public ActionResult Create(Rating.Models.ActionTypeModel actionType) 
         {
+            try
+            {
                 _actionTypeRepository.Create(actionType.ToDomainModel());
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                return Redirect("/Share/Error?message" + e);
+            }
                 return Redirect("~/RatingType/Edit/" + actionType.RatingTypeId.ToString());
         }
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            var actionTypeId = Convert.ToInt32(id);
-            return View(ActionTypeModel.FromDomainModel(_actionTypeRepository.GetActionType(actionTypeId)));
+            return View(ActionTypeModel.FromDomainModel(_actionTypeRepository.GetActionType(id)));
         }
         [HttpPost]
         public ActionResult Edit(ActionTypeModel actionType) 
         {
+             try
+             {
                 _actionTypeRepository.Edit(actionType.ToDomainModel());
-                return Redirect("~/RatingType/Edit/" + actionType.RatingTypeId.ToString());
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                return Redirect("/Share/Error?message" + e);
+            }
+             return Redirect("~/RatingType/Edit/" + actionType.RatingTypeId.ToString());
         }
         
     }

@@ -18,31 +18,28 @@ namespace Rating.Controllers
             _ratingTypeRepository = ratingTypeRepository;
         }
         // GET: RatingType
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            int ratingTypeId = Convert.ToInt32(id);
-            return PartialView(RatingTypeModel.FromDomainModel(_ratingTypeRepository.GetRatingType(ratingTypeId)));
+            return View(RatingTypeModel.FromDomainModel(_ratingTypeRepository.GetRatingType(id)));
         }
 
         [HttpPost]
         public ActionResult Edit(Rating.Models.RatingTypeModel ratingType)
         {
-             var at = RatingTypeModel.FromDomainModel(_ratingTypeRepository.GetRatingType(ratingType.Id));
-            if (at == null)
+            try
             {
                 _ratingTypeRepository.Edit((ratingType).ToDomainModel());
-                return Redirect("~/Project/Edit/"+ ratingType.ProjectId.ToString());
             }
-            else
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
             {
-                throw new InvalidOperationException("This rating type exsist already!!!");
+                return Redirect("/Share/Error?message" + e);
             }
+                return Redirect("~/Project/Edit/"+ ratingType.ProjectId.ToString());
         }
 
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
-            int ratingTypeId = Convert.ToInt32(id);
-            _ratingTypeRepository.Delete(ratingTypeId);
+            _ratingTypeRepository.Delete(id);
             return Redirect("~/Project/Edit/" + RouteData.Values["projectId"].ToString());
         }
 
@@ -54,7 +51,14 @@ namespace Rating.Controllers
         [HttpPost]
         public ActionResult Create(RatingTypeModel ratingType)
         {
+            try
+            {
                 _ratingTypeRepository.Create(Mapper.Map<Domain.Entities.RatingType>(ratingType));
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                return Redirect("/Share/Error?message" + e);
+            }
                 return Redirect("~/Project/Edit/" + ratingType.ProjectId.ToString());
         }
     }
