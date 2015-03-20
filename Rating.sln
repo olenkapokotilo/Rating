@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40121.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rating", "Rating\Rating.csproj", "{E8845F9F-B63B-450F-A74E-62B5E6BA1C90}"
 EndProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		SolutionItems\Scripts\Create.sql = SolutionItems\Scripts\Create.sql
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatingAPI", "RatingAPI\RatingAPI.csproj", "{7992D84E-A588-48BC-9484-5D815122EB4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{56C0EC4F-8E09-444F-9ED2-AD4EAA25434C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C0EC4F-8E09-444F-9ED2-AD4EAA25434C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C0EC4F-8E09-444F-9ED2-AD4EAA25434C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7992D84E-A588-48BC-9484-5D815122EB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7992D84E-A588-48BC-9484-5D815122EB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7992D84E-A588-48BC-9484-5D815122EB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7992D84E-A588-48BC-9484-5D815122EB4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
