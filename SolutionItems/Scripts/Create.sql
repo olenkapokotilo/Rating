@@ -205,32 +205,9 @@ ALTER TABLE [User]
 ADD CONSTRAINT FK_User_Role
 FOREIGN KEY (RoleId)
 REFERENCES Role(Id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
 GO
-
-UPDATE [User] SET [RoleId]=1 WHERE [RoleId] IS NULL
-GO
-
-ALTER TABLE [User]
-ALTER COLUMN [RoleId] INT NOT NULL
-GO
-
-
-/*------------------ADD Phone TO User--------------------------------------*/
-USE [Rating]
-GO
-
-ALTER TABLE [User]
-ADD Phone varchar(15) DEFAULT '000-000-0000'
-GO
-
-UPDATE [User] 
-SET [Phone]= '000-000-0000' 
-WHERE [Phone] IS NULL
-GO
-ALTER TABLE [User]
-ALTER COLUMN [Phone] INT NOT NULL
-GO
-
 
 /*------------------ADD TABLE RatingType--------------------------------------*/
 USE [Rating]
@@ -279,37 +256,209 @@ GO
 USE [Rating]
 GO
 ALTER TABLE [ActionType]
-ADD RatingTypeId INT DEFAULT(1)
+ADD RatingTypeId INT NOT NULL
 GO
+
 ALTER TABLE [ActionType]
-ADD CONSTRAINT FK_RatingType_ActionType
+ADD CONSTRAINT FK_ActionType_RatingType
 FOREIGN KEY (RatingTypeId)
 REFERENCES RatingType(Id)
-GO
-UPDATE [ActionType] SET [RatingTypeId] =1 WHERE [RatingTypeId] IS NULL
-GO
-ALTER TABLE [ActionType]
-ALTER COLUMN [RatingTypeId] INT NOT NULL
+ON UPDATE CASCADE
+ON DELETE CASCADE
 GO
 /*------------------ADD ProjectId in RatingType--------------------------------------*/
 USE [Rating]
 GO
 ALTER TABLE [RatingType]
-ADD ProjectId INT DEFAULT(1)
+ADD ProjectId INT NOT NULL
 GO
 ALTER TABLE [RatingType]
-ADD CONSTRAINT FK_Project_RatingType
+ADD CONSTRAINT FK_RatingType_Project
+FOREIGN KEY (ProjectId)
+REFERENCES Project(Id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+
+/*------------------ADD table ProjectUser--------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Table [dbo].[ProjectUser]    Script Date: 02.04.2015 13:22:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ProjectUser](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_ProjectUser] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/*------------------ADD table Rating --------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Table [dbo].[Rating]    Script Date: 02.04.2015 13:24:17 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Rating](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nchar](10) NOT NULL,
+	[Score] [int] NOT NULL,
+ CONSTRAINT [PK_Rating] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/*------------------ADD  table Action--------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Table [dbo].[Action]    Script Date: 02.04.2015 13:26:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Action](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[DateTime] [datetime] NOT NULL,
+ CONSTRAINT [PK_Action] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/*------------------ADD foreign key ProjectId in ProjectUser --------------------------------------*/
+USE [Rating]
+GO
+
+ALTER TABLE [ProjectUser]
+ADD ProjectId INT NULL
+GO
+
+ALTER TABLE [ProjectUser]
+ADD CONSTRAINT FK_ProjectUser_Project
 FOREIGN KEY (ProjectId)
 REFERENCES Project(Id)
 GO
-UPDATE [RatingType] SET [ProjectId] =1 WHERE [ProjectId] IS NULL
+
+/*------------------ADD UNIQUE INDEX - RatingType--------------------------------------*/
+USE [Rating]
+
 GO
-ALTER TABLE [RatingType]
-ALTER COLUMN [ProjectId] INT NOT NULL
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_RatingType_Name_ProjectId] ON [dbo].[RatingType]
+(
+	[Name] ASC,
+	[ProjectId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 GO
-/*------------------ADD --------------------------------------*/
+/*------------------ADD UNIQUE INDEX - ActionType--------------------------------------*/
+USE [Rating]
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_ActionType_Name_RatingTypeId] ON [dbo].[ActionType]
+(
+	[Name] ASC,
+	[RatingTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
 
 
+/*------------------ADD unique index Project--------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Index [UX_Project_Name_UserId]    Script Date: 02.04.2015 14:30:12 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [UX_Project_Name_UserId] ON [dbo].[Project]
+(
+	[Name] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/*------------------ADD  RatingRypeId in rating--------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [Rating]
+ADD RatingTypeId INT NOT NULL
+GO
+
+ALTER TABLE [Rating]
+ADD CONSTRAINT FK_Rating_RatingType
+FOREIGN KEY (RatingTypeId)
+REFERENCES RatingType(Id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+/*------------------ADD  projectUserId in Rating--------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [Rating]
+ADD ProjectUserId INT NULL
+GO
+
+ALTER TABLE [Rating]
+ADD CONSTRAINT FK_Rating_ProjectUser
+FOREIGN KEY (ProjectUserId)
+REFERENCES ProjectUser(Id)
+GO
+/*------------------ADD actionTypeId in Action--------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [Action]
+ADD ActionTypeId INT NOT NULL
+GO
+
+ALTER TABLE [Action]
+ADD CONSTRAINT FK_Action_ActionType
+FOREIGN KEY (ActionTypeId)
+REFERENCES ActionType(Id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+/*------------------ProjectUserId in Action--------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [Action]
+ADD ProjectUserId INT NOT NULL
+GO
+
+ALTER TABLE [Action]
+ADD CONSTRAINT FK_Action_ProjectUsere
+FOREIGN KEY (ProjectUserId)
+REFERENCES ProjectUser(Id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+/*------------------RatingId in Action--------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [Action]
+ADD RatingId INT NULL
+GO
+
+ALTER TABLE [Action]
+ADD CONSTRAINT FK_Action_Rating
+FOREIGN KEY (RatingId)
+REFERENCES Rating(Id)
+GO
 /*------------------ADD --------------------------------------*/
 /*------------------ADD --------------------------------------*/
 /*------------------ADD --------------------------------------*/
