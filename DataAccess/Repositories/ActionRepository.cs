@@ -7,7 +7,7 @@ using Domain.Repositories.Interfaces;
 
 namespace DataAccess.Repositories
 {
-    class ActionRepository: IActionRepository
+    public class ActionRepository: IActionRepository
     {
     }
 }

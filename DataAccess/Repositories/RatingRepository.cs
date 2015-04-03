@@ -7,7 +7,8 @@ using Domain.Repositories.Interfaces;
 
 namespace DataAccess.Repositories
 {
-    class RatingRepository : IRatingRepository
+    public class RatingRepository : IRatingRepository
     {
+        public void GetProjectUser(int id) { }
     }
 }

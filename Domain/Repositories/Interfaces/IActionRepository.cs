@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories.Interfaces
 {
-    interface IActionRepository
+    public interface IActionRepository
     {
     }
 }

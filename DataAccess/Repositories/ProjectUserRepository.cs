@@ -7,7 +7,7 @@ using Domain.Repositories.Interfaces;
 
 namespace DataAccess.Repositories
 {
-    class ProjectUserRepository : IProjectUserRepository
+    public class ProjectUserRepository : IProjectUserRepository
     {
     }
 }

@@ -94,11 +94,6 @@ namespace Rating.Controllers
         public ActionResult ForgotPassword(string Email, string Phone)
         {
             UserModel user = UserModel.FromDomainModel(_userRepository.GetUserByEmail(Email));
-            if (user.Phone == Phone) 
-            {
-                
-            }
-
             return Redirect("//");
         }
     }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories.Interfaces
 {
-    interface IRatingRepository
+    public interface IRatingRepository
     {
+        void GetProjectUser(int id);
     }
 }
