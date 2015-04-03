@@ -222,8 +222,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Startup\Startup.cs" />
-    <Compile Include="Startup\MappingConfiguration.cs" />
+    <Compile Include="ApiStartup\Startup.cs" />
+    <Compile Include="ApiStartup\MappingConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
