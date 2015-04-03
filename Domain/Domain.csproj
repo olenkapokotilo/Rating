@@ -39,8 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Action.cs" />
     <Compile Include="Entities\ActionType.cs" />
     <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\ProjectUser.cs" />
+    <Compile Include="Entities\Rating.cs" />
     <Compile Include="Entities\RatingType.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
