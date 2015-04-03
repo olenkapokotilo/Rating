@@ -50,53 +50,8 @@ namespace Rating.Controllers
         }
         public ActionResult Create() 
         {
-
-           //using (var client = new HttpClient())
-           // {
-           //     client.BaseAddress = new Uri("http://localhost:9000/");
-           //     client.DefaultRequestHeaders.Accept.Clear();
-           //     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-           //     // New code:
-           //     HttpResponseMessage response = client.GetAsync("api/products/1").Result;
-           //     if (response.IsSuccessStatusCode)
-           //     {
-           //         object product = response.Content.ReadAsStreamAsync().Result;
-           //         Console.WriteLine("{0}\t${1}\t{2}", product.Name, product.Price, product.Category);
-           //     }
-           // }
-
-
             return View();
         }
-
-
-        //public static WebResponse SendPostRequest(string data, string url)
-        //{
-        //    //Data parameter Example
-        //    //string data = "name=" + value
-
-        //    var httpRequest = HttpWebRequest.Create(url);
-        //    httpRequest.Method = "POST";
-        //    httpRequest.ContentType = "application/x-www-form-urlencoded";
-        //    httpRequest.ContentLength = data.Length;
-
-        //    var streamWriter = new StreamWriter(httpRequest.GetRequestStream());
-        //    streamWriter.Write(data);
-        //    streamWriter.Close();
-
-        //    return httpRequest.GetResponse();
-        //}
-
-        //public static WebResponse SendGetRequest(string url)
-        //{
-        //    WebRequest httpRequest = HttpWebRequest.Create(url);
-        //    httpRequest.Method = "GET";
-
-        //    return httpRequest.GetResponse();
-        //}
-
-
         [HttpPost]
         public ActionResult Create(ProjectModel newProject) 
         {

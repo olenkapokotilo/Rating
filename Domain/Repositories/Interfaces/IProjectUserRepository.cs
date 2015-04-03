@@ -8,5 +8,7 @@ namespace Domain.Repositories.Interfaces
 {
     public interface IProjectUserRepository
     {
+        void GetProjectUser(int id);
+        void Create(Domain.Entities.ProjectUser projectUser);
     }
 }

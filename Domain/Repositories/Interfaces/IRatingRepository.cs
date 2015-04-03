@@ -8,6 +8,6 @@ namespace Domain.Repositories.Interfaces
 {
     public interface IRatingRepository
     {
-        void GetProjectUser(int id);
+        
     }
 }

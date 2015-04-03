@@ -12,7 +12,7 @@ namespace RatingAPI.Models
         public string Name { get; set; }
         public int Score { get; set; }
         public int RatingTypeId { get; set; }
-        public int? ProjectUsesrId { get; set; }
+        public int? ProjectUserId { get; set; }
         public static RatingModel FromDomainModel(Domain.Entities.Rating domainRating)
         {
             return Mapper.Map<RatingModel>(domainRating);
