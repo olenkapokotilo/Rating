@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
+using RatingAPI.CompositionRoot;
 
 namespace RatingAPI
 {
@@ -18,6 +20,9 @@ namespace RatingAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DependencyResolver.SetResolver(new Autofac.Integration.WebApi.AutofacWebApiDependencyResolver(AutofacContainerFactory.GetContainer()));
+            DataAccess.Startup.MappingConfiguration.RegisterMapping();
+            RatingAPI.ApiStartup.MappingConfiguration.RegisterMapping();
         }
     }
 }
