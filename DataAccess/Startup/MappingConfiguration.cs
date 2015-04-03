@@ -35,7 +35,7 @@ namespace DataAccess.Startup
             Mapper.CreateMap<D.Project, DA.Project>()
                     .ForMember(daProject => daProject.User, opt => opt.Ignore());
             Mapper.CreateMap<D.Role, DA.Role>()
-                    .ForMember(daRole => daRole.Users, opt => opt.Ignore());
+                .ForMember(daRole => daRole.User, opt => opt.Ignore());
             Mapper.CreateMap<D.RatingType, DA.RatingType>()
                     .ForMember(daRatingType => daRatingType.Project, opt => opt.Ignore());
             Mapper.CreateMap<D.ActionType, DA.ActionType>()

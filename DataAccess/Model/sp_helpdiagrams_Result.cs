@@ -10,22 +10,13 @@
 namespace DataAccess.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class RatingType
+    public partial class sp_helpdiagrams_Result
     {
-        public RatingType()
-        {
-            this.ActionTypes = new HashSet<ActionType>();
-            this.Rating = new HashSet<Rating>();
-        }
-    
-        public int Id { get; set; }
+        public string Database { get; set; }
         public string Name { get; set; }
-        public int ProjectId { get; set; }
-    
-        public virtual ICollection<ActionType> ActionTypes { get; set; }
-        public virtual Project Project { get; set; }
-        public virtual ICollection<Rating> Rating { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

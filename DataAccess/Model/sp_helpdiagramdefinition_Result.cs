@@ -10,21 +10,10 @@
 namespace DataAccess.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class User
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public User()
-        {
-            this.Projects = new HashSet<Project>();
-        }
-    
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> RoleId { get; set; }
-    
-        public virtual ICollection<Project> Projects { get; set; }
-        public virtual Role Role { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

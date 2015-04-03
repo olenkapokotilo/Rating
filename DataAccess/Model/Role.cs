@@ -16,12 +16,12 @@ namespace DataAccess.Model
     {
         public Role()
         {
-            this.Users = new HashSet<User>();
+            this.User = new HashSet<User>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

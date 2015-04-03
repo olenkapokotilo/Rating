@@ -17,6 +17,7 @@ namespace DataAccess.Model
         public Project()
         {
             this.RatingTypes = new HashSet<RatingType>();
+            this.ProjectUser = new HashSet<ProjectUser>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,6 @@ namespace DataAccess.Model
     
         public virtual User User { get; set; }
         public virtual ICollection<RatingType> RatingTypes { get; set; }
+        public virtual ICollection<ProjectUser> ProjectUser { get; set; }
     }
 }

@@ -14,11 +14,17 @@ namespace DataAccess.Model
     
     public partial class ActionType
     {
+        public ActionType()
+        {
+            this.Action = new HashSet<Action>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int Scores { get; set; }
         public int RatingTypeId { get; set; }
     
         public virtual RatingType RatingType { get; set; }
+        public virtual ICollection<Action> Action { get; set; }
     }
 }

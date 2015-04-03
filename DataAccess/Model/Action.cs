@@ -12,20 +12,17 @@ namespace DataAccess.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class RatingType
+    public partial class Action
     {
-        public RatingType()
-        {
-            this.ActionTypes = new HashSet<ActionType>();
-            this.Rating = new HashSet<Rating>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ProjectId { get; set; }
+        public System.DateTime DateTime { get; set; }
+        public int ActionTypeId { get; set; }
+        public int ProjectUserId { get; set; }
+        public Nullable<int> RatingId { get; set; }
     
-        public virtual ICollection<ActionType> ActionTypes { get; set; }
-        public virtual Project Project { get; set; }
-        public virtual ICollection<Rating> Rating { get; set; }
+        public virtual ActionType ActionType { get; set; }
+        public virtual ProjectUser ProjectUser { get; set; }
+        public virtual Rating Rating { get; set; }
     }
 }
