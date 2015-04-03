@@ -1,7 +1,6 @@
 ﻿@model  Rating.Models.UserModel
 <h3>info</h3>
 <p>Name : @Model.Email</p>
-<p>Phone : @Model.Phone</p>
 @{ Html.RenderPartial("~/Views/Project/List.cshtml", Model.Projects);}
 <a href="@Url.Action("Index", "Home")">Index Home</a>
 
