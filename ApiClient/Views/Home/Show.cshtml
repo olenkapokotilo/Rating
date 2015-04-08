@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ApiClient.Models.ProjectUser>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3>Userrs</h3>
+    <table>
+        <tr class="header">
+            <td><p>Name</p></td>
+            
+        </tr>
+        @foreach (ApiClient.Models.ProjectUser u in Model)
+        {
+            <tr>
+                <td><p>@u.Name</p></td>
+                <td><p><a href="/Comment/Create">Index</a></p></td>
+            </tr>
+        }
+    </table>
+</div>

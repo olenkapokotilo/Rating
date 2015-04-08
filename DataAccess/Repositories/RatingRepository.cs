@@ -9,6 +9,6 @@ namespace DataAccess.Repositories
 {
     public class RatingRepository : IRatingRepository
     {
-        public void GetProjectUser(int id) { }
+        
     }
 }

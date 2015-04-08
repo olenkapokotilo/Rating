@@ -10,6 +10,8 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft;
 using Newtonsoft.Json;
+using ApiClient.Models;
+using ApiClient.Services;
 
 
 namespace ApiClient.Controllers
@@ -17,15 +19,25 @@ namespace ApiClient.Controllers
     public class HomeController : Controller
     {
         public const string BaseUri = "http://localhost:2250/api/";
+        ClientContext db = new ClientContext();
 
+        private IRequestService<ProjectUser> projectUserService;
+        public HomeController()
+        {
+            projectUserService = new JsonRequestService<ProjectUser>(BaseUri + "user/");
+        }
+        public ActionResult Show()
+        {
+            return View(db.ProjectUsers);
+        }
         public ActionResult Index()
         {
-            User user = new User();
-            user.Name="qwe"; user.Age=21;user.Country="usa";
-            string jsonUser = JsonConvert.SerializeObject(user);
-            
-            var responseGet = SendGetRequest(BaseUri + "user/123");
-            var responsePost = SendPostRequest(jsonUser, BaseUri + "user");
+            //ProjectUser projectUser = new ProjectUser()
+            //{
+            //    Name = "projectUser1",
+            //    ProjectId = 1
+            //};
+            //projectUserService.Post(projectUser);
             return View();
         } 
        // public string url = "api/products/1";
@@ -52,23 +64,17 @@ namespace ApiClient.Controllers
             var httpRequest = HttpWebRequest.Create(url);
             httpRequest.Method = "POST";
             httpRequest.ContentType = "application/json";
-            //httpRequest.ContentLength = data.Length;
             using(StreamWriter sw = new StreamWriter(httpRequest.GetRequestStream()))
             {
                 sw.Write(data);
             }
-            //var streamWriter = new StreamWriter(httpRequest.GetRequestStream());
-            //streamWriter.Write(data);
-            //streamWriter.Close();
             HttpWebResponse response = (HttpWebResponse)httpRequest.GetResponse();
-            //Encoding responseEncoding = Encoding.GetEncoding(response.CharacterSet);
             using (StreamReader sr = new StreamReader(response.GetResponseStream()))
             {
                 result = sr.ReadToEnd();
             }
-            return result; //httpRequest.GetResponse();
+            return result; 
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

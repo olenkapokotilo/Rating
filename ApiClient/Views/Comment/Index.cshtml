@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ApiClient.Models.Comment>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3>Comments</h3>
+    <table>
+        @foreach (ApiClient.Models.Comment c in Model)
+        {
+            <tr>
+                <td><p>@c.Text</p></td>
+            </tr>
+        }
+    </table>
+</div>
