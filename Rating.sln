@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40121.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rating", "Rating\Rating.csproj", "{E8845F9F-B63B-450F-A74E-62B5E6BA1C90}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatingAPI", "RatingAPI\RatingAPI.csproj", "{7992D84E-A588-48BC-9484-5D815122EB4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiClient", "ApiClient\ApiClient.csproj", "{34CCAA28-F078-43D8-85B6-5E99120CF800}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{7992D84E-A588-48BC-9484-5D815122EB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7992D84E-A588-48BC-9484-5D815122EB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7992D84E-A588-48BC-9484-5D815122EB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34CCAA28-F078-43D8-85B6-5E99120CF800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34CCAA28-F078-43D8-85B6-5E99120CF800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34CCAA28-F078-43D8-85B6-5E99120CF800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34CCAA28-F078-43D8-85B6-5E99120CF800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
