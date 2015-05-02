@@ -2,24 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using Domain.Repositories.Interfaces;
 using DataAccess.Model;
+using RatingAPI.Models;
+using Newtonsoft.Json;
+using AutoMapper;
+using System.Web.Http;
 
 namespace RatingAPI.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ApiController
     {
         private IProjectUserRepository _projectUserRepository;
-        
+
         public UserController(IProjectUserRepository projectUserRepository)
         {
             _projectUserRepository = projectUserRepository;
         }
         // GET: User
-        public ActionResult Index()
+        [HttpPost]
+        public void Create(ProjectUserModel projectUser)
         {
-            return View();
+            _projectUserRepository.Create(projectUser.ToDomainModel());
         }
     }
 }
