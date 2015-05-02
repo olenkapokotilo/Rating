@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatingAPI", "RatingAPI\RatingAPI.csproj", "{7992D84E-A588-48BC-9484-5D815122EB4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{CD737055-B08E-4E4B-9F5E-662EC742E0AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{7992D84E-A588-48BC-9484-5D815122EB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7992D84E-A588-48BC-9484-5D815122EB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7992D84E-A588-48BC-9484-5D815122EB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD737055-B08E-4E4B-9F5E-662EC742E0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD737055-B08E-4E4B-9F5E-662EC742E0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD737055-B08E-4E4B-9F5E-662EC742E0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD737055-B08E-4E4B-9F5E-662EC742E0AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
