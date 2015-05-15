@@ -32,15 +32,8 @@ namespace ApiClient.Controllers
         }
         public ActionResult Index()
         {
-            //ProjectUser projectUser = new ProjectUser()
-            //{
-            //    Name = "projectUser1",
-            //    ProjectId = 1
-            //};
-            //projectUserService.Post(projectUser);
             return View();
-        } 
-       // public string url = "api/products/1";
+        }
         public static string SendGetRequest(string url)
         {
             string result=string.Empty;
