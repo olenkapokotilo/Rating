@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Client.Models.Comment>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<table>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td><b>@c.Text     </b></td>
+            <td><p>@c.User.UserName</p></td>
+        </tr>
+    }
+</table>
+
+@{ Html.RenderPartial("~/Views/Comment/Create.cshtml", Model);}

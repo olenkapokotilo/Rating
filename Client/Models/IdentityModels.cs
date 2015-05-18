@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Client.Migrations;
 
 namespace Client.Models
 {
@@ -25,6 +26,7 @@ namespace Client.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(new SimpleDbInitializer());
         }
 
         public static ApplicationDbContext Create()

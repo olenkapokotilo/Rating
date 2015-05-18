@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Client.Migrations;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,10 +14,15 @@ namespace Client
     {
         protected void Application_Start()
         {
+            //var context = new Client.Models.ApplicationDbContext();
+            ////Database.SetInitializer<Client.Models.ApplicationDbContext>(new SimpleDbInitializer());
+            //context.Database.Initialize(true);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+           
         }
     }
 }
