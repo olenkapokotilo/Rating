@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Client.Services;
 
 namespace Client.Controllers
 {
     public class CommentController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        string path = "http://localhost:2250/api/User/Create";
         // GET: Comment
         public ActionResult List()
         {
@@ -28,7 +30,10 @@ namespace Client.Controllers
                 newComment.UserId = User.Identity.GetUserId(); 
                  db.Comments.Add(newComment);
                  db.SaveChanges();
+                 var request = new JsonRequestService<Comment>(path);
+                 request.Post(null);
             }
+            
             return Redirect("/Comment/List");
         }
     }

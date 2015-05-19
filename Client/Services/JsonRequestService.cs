@@ -5,6 +5,8 @@ using System.Web;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Client.Services
 {
@@ -25,7 +27,8 @@ namespace Client.Services
             httpRequest.ContentType = "application/json";
             using (StreamWriter sw = new StreamWriter(httpRequest.GetRequestStream()))
             {
-                sw.Write(jsonContent);
+                byte[] bytes = Convert.FromBase64String(jsonContent);
+                sw.Write(bytes);
             }
             HttpWebResponse response = (HttpWebResponse)httpRequest.GetResponse();
             using (StreamReader sr = new StreamReader(response.GetResponseStream()))
@@ -58,6 +61,7 @@ namespace Client.Services
             httpRequest.ContentType = "application/json";
             using (StreamWriter sw = new StreamWriter(httpRequest.GetRequestStream()))
             {
+                byte[] bytes = Convert.FromBase64String(jsonContent);
                 sw.Write(jsonContent);
             }
             HttpWebResponse response = (HttpWebResponse)httpRequest.GetResponse();
