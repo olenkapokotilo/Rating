@@ -25,17 +25,10 @@ namespace DataAccess.Repositories
        {
            using (var entities = new Entities())
            {
-               var exist = entities.ProjectUser.SingleOrDefault(pu => pu.Id == id);
-               if (exist == null) 
-               {
-                   return false;
-               }
-               else 
-               {
-                   return true;
-               }
+               return entities.ProjectUser.Any(pu => pu.Id == id);
            }
        }
+
        public Domain.Entities.ProjectUser Create(Domain.Entities.ProjectUser projectUser) 
        {
            using (var entities = new Entities())
