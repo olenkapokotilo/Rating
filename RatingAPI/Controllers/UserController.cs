@@ -24,52 +24,47 @@ namespace RatingAPI.Controllers
         {
             _projectUserRepository = projectUserRepository;
             _actionTypeRepository = actionTypeReposotory;
-           // _actionRepository = actionRepository;
+            // _actionRepository = actionRepository;
             _ratingTypeRepository = ratingTypeRepository;
             _ratingRepository = ratingRepository;
         }
         // GET: User
         [HttpPost]
-        public void Create(ApiAction apiAction) //?Create(obj jsonApiAction)
+        public void Create(ApiAction apiAction)
         {
-            //JsonConvert.DeserializeObject(jsonApiAction); //?
-            ProjectUserModel projectUser = ProjectUserModel.FromDomainModel(_projectUserRepository.GetProjectUserByName(apiAction.projectUserName));
-           
-            if (projectUser != null)//_projectUserRepository.ExistProjectUser(projectUser.Id)) 
-            {
-                int idRatingType = _ratingTypeRepository.GetRatingTypeIdByName(apiAction.ratingTypeName);
-                RatingModel rating = RatingModel.FromDomainModel(_ratingRepository.GetRating(idRatingType, projectUser.Id));
-                if(rating != null)
-                {
-                    rating.Score += _actionTypeRepository.GetActionTypeScoresByName(apiAction.actionTypeName);
-                    
-                    
-                }else
-                { //?
-                    try
-                    {
-                        int score = _actionTypeRepository.GetActionTypeScoresByName(apiAction.actionTypeName);
-                        RatingModel newRating = new RatingModel(apiAction.ratingTypeName, score, idRatingType, projectUser.Id);
-                        _ratingRepository.Create(Mapper.Map<Domain.Entities.Rating>(newRating));
-                    }
-                    catch (System.Data.Entity.Infrastructure.DbUpdateException e)
-                    {
-                        //throw new
-                    }
-                }
+            int ratingTypeId = _ratingTypeRepository.GetRatingTypeIdByName(apiAction.ratingTypeName);
+            
+            Domain.Entities.Rating rating = GetRating(apiAction,ratingTypeId);
+            rating.Score += _actionTypeRepository.GetActionTypeScoresByName(apiAction.actionTypeName);
+            _ratingRepository.Update(rating);
 
-            }
-            else {
-                try
-                {
-                    ProjectUserModel newProjectUser = new ProjectUserModel(apiAction.projectUserName, apiAction.projectId);
-                    _projectUserRepository.Create(Mapper.Map<Domain.Entities.ProjectUser>(newProjectUser));
-                }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
-                {
-                    //throw new
-                }
-            }
+            // TODO: save action..
         }
+
+        private Domain.Entities.Rating GetRating(ApiAction apiAction, int ratingTypeId)
+        {
+            var projectUser = GetUser(apiAction);
+
+            Domain.Entities.Rating rating = _ratingRepository.GetRating(ratingTypeId, projectUser.Id);
+
+            if (rating == null)
+            {
+                var newRating = new Domain.Entities.Rating() { RatingTypeId = ratingTypeId, ProjectUserId = projectUser.Id };
+                rating = _ratingRepository.Create(newRating);
+            }
+            return rating;
+        }
+
+        private Domain.Entities.ProjectUser GetUser(ApiAction apiAction)
+        {
+            var projectUser = _projectUserRepository.GetProjectUserByName(apiAction.projectUserName);
+            if (projectUser == null)
+            {
+                var newProjectUser = new Domain.Entities.ProjectUser() { Name = apiAction.projectUserName, ProjectId = apiAction.projectId };
+                projectUser = _projectUserRepository.Create(newProjectUser);
+            }
+            return projectUser;
+        }
+
     }
 }
