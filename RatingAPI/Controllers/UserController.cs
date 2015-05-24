@@ -8,18 +8,21 @@ using RatingAPI.Models;
 using Newtonsoft.Json;
 using AutoMapper;
 using System.Web.Http;
+using Domain.Services;
 
 namespace RatingAPI.Controllers
 {
     public class UserController : ApiController
     {
+        private ActionService _actionService;
+
         private IProjectUserRepository _projectUserRepository;
         private IActionTypeRepository _actionTypeRepository;
         //private IActionRepository _actionRepository;
         private IRatingTypeRepository _ratingTypeRepository;
         private IRatingRepository _ratingRepository;
 
-        public UserController(IProjectUserRepository projectUserRepository, IRatingTypeRepository ratingTypeRepository,
+        public UserController(ActionService actionService, IProjectUserRepository projectUserRepository, IRatingTypeRepository ratingTypeRepository,
                               IRatingRepository ratingRepository, IActionTypeRepository actionTypeReposotory)//, IActionRepository actionRepository)
         {
             _projectUserRepository = projectUserRepository;
@@ -27,43 +30,28 @@ namespace RatingAPI.Controllers
             // _actionRepository = actionRepository;
             _ratingTypeRepository = ratingTypeRepository;
             _ratingRepository = ratingRepository;
+            _actionService = actionService;
         }
         // GET: User
         [HttpPost]
         public void Create(ApiAction apiAction)
         {
-            int ratingTypeId = _ratingTypeRepository.GetRatingTypeIdByName(apiAction.ratingTypeName);
-            
-            Domain.Entities.Rating rating = GetRating(apiAction,ratingTypeId);
-            rating.Score += _actionTypeRepository.GetActionTypeScoresByName(apiAction.actionTypeName);
-            _ratingRepository.Update(rating);
-
-            // TODO: save action..
+            var action = ConvertToDomain(apiAction);
+            _actionService.Create(action);
         }
 
-        private Domain.Entities.Rating GetRating(ApiAction apiAction, int ratingTypeId)
+        private Domain.Entities.Action ConvertToDomain(ApiAction apiAction)
         {
-            var projectUser = GetUser(apiAction);
+           var ratingType = _ratingTypeRepository.GetRatingTypeByNameAndProjectId(apiAction.ratingTypeName, apiAction.projectId);
+           var actionType = _actionTypeRepository.GetActionTypeByNameAndRatingTypeId(apiAction.actionTypeName, ratingType.Id);
 
-            Domain.Entities.Rating rating = _ratingRepository.GetRating(ratingTypeId, projectUser.Id);
-
-            if (rating == null)
-            {
-                var newRating = new Domain.Entities.Rating() { RatingTypeId = ratingTypeId, ProjectUserId = projectUser.Id };
-                rating = _ratingRepository.Create(newRating);
-            }
-            return rating;
-        }
-
-        private Domain.Entities.ProjectUser GetUser(ApiAction apiAction)
-        {
-            var projectUser = _projectUserRepository.GetProjectUserByName(apiAction.projectUserName);
-            if (projectUser == null)
-            {
-                var newProjectUser = new Domain.Entities.ProjectUser() { Name = apiAction.projectUserName, ProjectId = apiAction.projectId };
-                projectUser = _projectUserRepository.Create(newProjectUser);
-            }
-            return projectUser;
+           return new Domain.Entities.Action()
+           {
+               DateTime = DateTime.Now,
+               ActionTypeId = actionType.Id,
+               ProjectId = apiAction.projectId,
+               ProjectUserId = apiAction.projectUserId
+           };
         }
 
     }
