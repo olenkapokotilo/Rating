@@ -26,7 +26,7 @@ namespace Domain.Services
 
         public void Create(Action action)
         {
-            Rating rating = GetRating(action);
+            Domain.Entities.Rating rating = GetRating(action);
             rating.Score += _actionTypeRepository.GetActionType(action.ActionTypeId).Scores;
             _ratingRepository.Update(rating);
             // TODO: save action..
@@ -49,10 +49,10 @@ namespace Domain.Services
 
         private ProjectUser GetUser(Action action)
         {
-            var projectUser = _projectUserRepository.GetProjectUser(action.ProjectId);
+            var projectUser = _projectUserRepository.GetProjectUserByExternalId(action.ExternalId);
             if (projectUser == null)
             {
-                var newProjectUser = new ProjectUser() { Id = action.ProjectUserId, ProjectId = action.ProjectId };
+                var newProjectUser = new ProjectUser() { ExternalId = action.ExternalId, ProjectId = action.ProjectId };
                 projectUser = _projectUserRepository.Create(newProjectUser);
             }
             return projectUser;

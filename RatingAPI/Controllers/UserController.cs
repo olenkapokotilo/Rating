@@ -44,13 +44,14 @@ namespace RatingAPI.Controllers
         {
            var ratingType = _ratingTypeRepository.GetRatingTypeByNameAndProjectId(apiAction.RatingTypeName, apiAction.ProjectId);
            var actionType = _actionTypeRepository.GetActionTypeByNameAndRatingTypeId(apiAction.ActionTypeName, ratingType.Id);
+          // var projectUser =  _projectUserRepository.GetProjectUserByExternalId(apiAction.ProjectUserExternalId);
 
            return new Domain.Entities.Action()
            {
                DateTime = DateTime.Now,
                ActionTypeId = actionType.Id,
                ProjectId = apiAction.ProjectId,
-               ProjectUserId = apiAction.ProjectUserId
+               ExternalId = apiAction.ProjectUserExternalId
            };
         }
 

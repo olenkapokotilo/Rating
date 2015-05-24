@@ -12,6 +12,6 @@ namespace Domain.Entities
         public string Name { get; set; }
         public int Score { get; set; }
         public int RatingTypeId { get; set; }
-        public int? ProjectUserId { get; set; }
+        public int ProjectUserId { get; set; }
     }
 }
