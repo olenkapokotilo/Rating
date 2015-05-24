@@ -358,7 +358,12 @@ ADD CONSTRAINT FK_ProjectUser_Project
 FOREIGN KEY (ProjectId)
 REFERENCES Project(Id)
 GO
-
+/*------------------ADD ExternalId in ProjectUser --------------------------------------*/
+USE [Rating]
+DELETE FROM [ProjectUser]
+ALTER TABLE [ProjectUser]
+ADD ExternalId [nvarchar](128) NOT NULL
+GO
 /*------------------ADD UNIQUE INDEX - RatingType--------------------------------------*/
 USE [Rating]
 

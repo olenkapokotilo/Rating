@@ -11,7 +11,7 @@ namespace Domain.Entities
         public int Id { get; set; }
         public DateTime DateTime { get; set; }
         public int ActionTypeId { get; set; }
-        public int ProjectUserId { get; set; }
+        public string ExternalId { get; set; }
         public int ProjectId { get; set; }
     }
 }

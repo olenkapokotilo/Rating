@@ -40,6 +40,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProjectId" Type="int" />
+          <Property Name="ExternalId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -500,6 +501,7 @@
           <NavigationProperty Name="Action" Relationship="RatingModel.FK_Action_ProjectUsere" FromRole="ProjectUser" ToRole="Action" />
           <NavigationProperty Name="Project" Relationship="RatingModel.FK_ProjectUser_Project" FromRole="ProjectUser" ToRole="Project" />
           <NavigationProperty Name="Rating" Relationship="RatingModel.FK_Rating_ProjectUser" FromRole="ProjectUser" ToRole="Rating" />
+          <Property Name="ExternalId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -694,6 +696,7 @@
           <EntitySetMapping Name="ProjectUser">
             <EntityTypeMapping TypeName="RatingModel.ProjectUser">
               <MappingFragment StoreEntitySet="ProjectUser">
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
