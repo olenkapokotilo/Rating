@@ -10,6 +10,7 @@ using System.Web;
 using System.Reflection;
 using System.Web.Mvc;
 using Autofac;
+using Domain.Services;
 
 namespace RatingAPI.CompositionRoot
 {
@@ -18,9 +19,12 @@ namespace RatingAPI.CompositionRoot
         public static Autofac.IContainer GetContainer() 
         {
             var builder = new ContainerBuilder();
+            builder.RegisterType<DataAccess.Repositories.RatingTypeRepository>().As<IRatingTypeRepository>().SingleInstance();
+            builder.RegisterType<DataAccess.Repositories.ActionTypeRepository>().As<IActionTypeRepository>().SingleInstance();
             builder.RegisterType<DataAccess.Repositories.RatingRepository>().As<IRatingRepository>().SingleInstance();
             builder.RegisterType<DataAccess.Repositories.ActionRepository>().As<IActionRepository>().SingleInstance();
             builder.RegisterType<DataAccess.Repositories.ProjectUserRepository>().As<IProjectUserRepository>().SingleInstance();
+            builder.RegisterType<Domain.Services.ActionService>().As<ActionService>().SingleInstance();
 
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
