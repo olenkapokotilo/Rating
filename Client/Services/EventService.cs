@@ -12,14 +12,14 @@ namespace Client.Services
 {
     public class EventService
     {
-        public void Comment(string userName, string path) 
+        public void Comment(string userId, string path) 
         {
             var service = new JsonRequestService<ApiAction>(path);
-            service.Post(new ApiAction() { 
-                projectUserName  = userName,
-                projectId = RatingProjectId,
-                actionTypeName = EventConstants.ActiveRatingType.ActionTypeNames.Comment,
-                ratingTypeName = EventConstants.ActiveRatingType.Name
+            service.Post(new ApiAction() {
+                ProjectUserExternalId = userId,
+                ProjectId = RatingProjectId,
+                ActionTypeName = EventConstants.ActiveRatingType.ActionTypeNames.Comment,
+                RatingTypeName = EventConstants.ActiveRatingType.Name
             });
         }
 
