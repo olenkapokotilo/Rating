@@ -26,16 +26,17 @@ namespace DataAccess.Repositories
         {
             using (var entities = new Entities())
             {
-                var newRating = entities.Rating.Add(AutoMapper.Mapper.Map<DataAccess.Model.Rating>(rating));
+                rating.Name = "rating"; 
+                var newRating = entities.Rating.Add(Mapper.Map<DataAccess.Model.Rating>(rating));
                 entities.SaveChanges();
                 return newRating.ToDomain();
             }
         }
-        void Update(Domain.Entities.Rating newRating) 
+        public void Update(Domain.Entities.Rating newRating) 
         {
             using (var entities = new Entities()) 
             {
-                var rating = this.GetRating(Convert.ToInt32(newRating.RatingTypeId), Convert.ToInt32(newRating.ProjectUserId));
+                var rating = this.GetRating(newRating.RatingTypeId, newRating.ProjectUserId);
                 rating.Score = newRating.Score;
                 entities.Entry(Mapper.Map<DataAccess.Model.Rating>(rating)).State = EntityState.Modified;
                 entities.SaveChanges();

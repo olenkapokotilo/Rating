@@ -33,11 +33,11 @@ namespace DataAccess.Repositories
 
             }
         }
-        public RatingType GetRatingTypeByNameAndProjectId(string name, int projectId)
+        public Domain.Entities.RatingType GetRatingTypeByNameAndProjectId(string name, int projectId)
         {
             using (var entities = new Entities())
             {
-                return entities.RatingType.SingleOrDefault(rt =>rt.ProjectId == projectId && rt.Name == name);
+                return Mapper.Map<Domain.Entities.RatingType>(entities.RatingType.SingleOrDefault(rt =>rt.ProjectId == projectId && rt.Name == name));
             }
         }
 

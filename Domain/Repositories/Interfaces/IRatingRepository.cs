@@ -11,6 +11,6 @@ namespace Domain.Repositories.Interfaces
         Domain.Entities.Rating GetRating(int ratingTypeId, int projectUserId);
         Domain.Entities.Rating Create(Domain.Entities.Rating rating);
         void Update(Domain.Entities.Rating newRating);
-        //public bool ExistRating(int idRatingType, int idProjectUser);
+        //Domain.Entities.RatingType GetRatingTypeByNameAndProjectId(string name, int projectId);
     }
 }
