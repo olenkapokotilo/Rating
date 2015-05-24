@@ -15,6 +15,7 @@ namespace RatingAPI.Models
         }
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ExternalId { get; set; }
         public int? ProjectId { get; set; }
         public static ProjectUserModel FromDomainModel(Domain.Entities.ProjectUser domainProjectUser)
         {

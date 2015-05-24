@@ -12,7 +12,7 @@ namespace RatingAPI.Models
         public string Name { get; set; }
         public DateTime DateTime { get; set; }
         public int ActionTypeId { get; set; }
-        public int ProjectUserId { get; set; }
+        public string ProjectUserInternalId { get; set; }
         public int? RatingId { get; set; }
 
         public static ActionModel FromDomainModel(Domain.Entities.Action domainAction)

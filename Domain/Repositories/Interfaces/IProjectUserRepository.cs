@@ -12,5 +12,6 @@ namespace Domain.Repositories.Interfaces
         bool ExistProjectUser(int id);
         Domain.Entities.ProjectUser Create(Domain.Entities.ProjectUser projectUser);
         Domain.Entities.ProjectUser GetProjectUserByName(string name);
+        Domain.Entities.ProjectUser GetProjectUserByExternalId(string externalId);
     }
 }

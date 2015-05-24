@@ -33,6 +33,7 @@ namespace DataAccess.Repositories
        {
            using (var entities = new Entities())
            {
+               projectUser.Name = "qweqwe";
                var newProjectUser = entities.ProjectUser.Add(AutoMapper.Mapper.Map<DataAccess.Model.ProjectUser>(projectUser));
                entities.SaveChanges();
                return Mapper.Map<Domain.Entities.ProjectUser>(newProjectUser);
@@ -44,6 +45,16 @@ namespace DataAccess.Repositories
            using (var entities = new Entities())
            {
                var projectUser = entities.ProjectUser.SingleOrDefault(pu => pu.Name == name);
+               var result = Mapper.Map<Domain.Entities.ProjectUser>(projectUser);
+               return result;
+
+           }
+       }
+       public Domain.Entities.ProjectUser GetProjectUserByExternalId(string externalId)
+       {
+           using (var entities = new Entities())
+           {
+               var projectUser = entities.ProjectUser.SingleOrDefault(pu => pu.ExternalId == externalId);
                var result = Mapper.Map<Domain.Entities.ProjectUser>(projectUser);
                return result;
 

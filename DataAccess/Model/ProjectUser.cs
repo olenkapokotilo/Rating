@@ -23,6 +23,7 @@ namespace DataAccess.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> ProjectId { get; set; }
+        public string ExternalId { get; set; }
     
         public virtual ICollection<Action> Action { get; set; }
         public virtual Project Project { get; set; }
