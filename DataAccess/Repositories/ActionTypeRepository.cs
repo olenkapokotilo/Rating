@@ -30,11 +30,11 @@ namespace DataAccess.Repositories
                 return result;
             }
         }
-        public Domain.Entities.ActionType GetActionTypeByName(string name)
+        public Domain.Entities.ActionType GetActionTypeByNameAndRatingTypeId(string name, int ratingTypeId)
         {
             using (var entities = new Entities())
             {
-                var dbActionType = entities.ActionType.SingleOrDefault(at => at.Name == name);
+                var dbActionType = entities.ActionType.SingleOrDefault(at =>at.RatingTypeId == ratingTypeId && at.Name == name);
                 var result = Mapper.Map<Domain.Entities.ActionType>(dbActionType);
                 return result;
             }
@@ -75,16 +75,6 @@ namespace DataAccess.Repositories
                 actionType.RatingTypeId = newActionType.RatingTypeId;
                 entities.Entry(Mapper.Map<DataAccess.Model.ActionType>(actionType)).State = EntityState.Modified;
                 entities.SaveChanges();
-            }
-        }
-        public int GetActionTypeScoresByName(string name)
-        {
-            using (var entities = new Entities())
-            {
-                var actionType = entities.ActionType.SingleOrDefault(at => at.Name == name);
-                int result = actionType.Scores;
-                return result;
-
             }
         }
     }

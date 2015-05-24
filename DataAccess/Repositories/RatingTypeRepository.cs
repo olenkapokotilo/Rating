@@ -33,13 +33,11 @@ namespace DataAccess.Repositories
 
             }
         }
-        public int GetRatingTypeIdByName(string name)
+        public RatingType GetRatingTypeByNameAndProjectId(string name, int projectId)
         {
             using (var entities = new Entities())
             {
-                var ratingType = entities.RatingType.SingleOrDefault(rt => rt.Name == name);
-                int result = ratingType.Id;
-                return result;
+                return entities.RatingType.SingleOrDefault(rt =>rt.ProjectId == projectId && rt.Name == name);
             }
         }
 
@@ -64,12 +62,13 @@ namespace DataAccess.Repositories
             }
         }
 
-        public void Create(Domain.Entities.RatingType  ratingType)
+        public Domain.Entities.RatingType Create(Domain.Entities.RatingType ratingType)
         {
             using (var entities = new Entities())
             {
-                entities.RatingType.Add(Mapper.Map<DataAccess.Model.RatingType>(ratingType));
+                var newRatingType = entities.RatingType.Add(Mapper.Map<DataAccess.Model.RatingType>(ratingType));
                 entities.SaveChanges();
+                return Mapper.Map<Domain.Entities.RatingType>(newRatingType);
             }
         }
     }
