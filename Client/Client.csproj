@@ -173,11 +173,13 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SimpleDbInitializer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApiAction.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SimpleDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\IRequestService.cs" />
     <Compile Include="Services\JsonRequestService.cs" />
     <Compile Include="Startup.cs" />

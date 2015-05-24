@@ -77,5 +77,15 @@ namespace DataAccess.Repositories
                 entities.SaveChanges();
             }
         }
+        public int GetActionTypeScoresByName(string name)
+        {
+            using (var entities = new Entities())
+            {
+                var actionType = entities.ActionType.SingleOrDefault(at => at.Name == name);
+                int result = actionType.Scores;
+                return result;
+
+            }
+        }
     }
 }

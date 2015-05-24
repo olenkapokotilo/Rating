@@ -11,12 +11,31 @@ namespace DataAccess.Repositories
 {
     public class ProjectUserRepository : IProjectUserRepository
     {
-       public void GetProjectUser(int id)
+        public Domain.Entities.ProjectUser GetProjectUser(int id)
        {
             using(var entities = new Entities())
             {
+                var projectUser = entities.ProjectUser.SingleOrDefault(pu => pu.Id == id);
+                var result = Mapper.Map<Domain.Entities.ProjectUser>(projectUser);
+                return result;
     
             }
+       }
+       public bool ExistProjectUser(int id) 
+       {
+           using (var entities = new Entities())
+           {
+               var exist = entities.ProjectUser.SingleOrDefault(pu => pu.Id == id);
+               if (exist == null) 
+               {
+                   return false;
+               }
+               else 
+               {
+                   return true;
+               }
+           }
+        
        }
        public void Create(Domain.Entities.ProjectUser projectUser) 
        {
@@ -24,6 +43,16 @@ namespace DataAccess.Repositories
            {
                entities.ProjectUser.Add(AutoMapper.Mapper.Map<DataAccess.Model.ProjectUser>(projectUser));
                entities.SaveChanges();
+
+           }
+       }
+       public Domain.Entities.ProjectUser GetProjectUserByName(string name)
+       {
+           using (var entities = new Entities())
+           {
+               var projectUser = entities.ProjectUser.SingleOrDefault(pu => pu.Name == name);
+               var result = Mapper.Map<Domain.Entities.ProjectUser>(projectUser);
+               return result;
 
            }
        }

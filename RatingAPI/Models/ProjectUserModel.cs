@@ -8,7 +8,11 @@ namespace RatingAPI.Models
 {
     public class ProjectUserModel
     {
-
+        public ProjectUserModel(string name, int projectId) 
+        {
+            this.Name = name;
+            this.ProjectId = projectId;
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public int? ProjectId { get; set; }

@@ -30,8 +30,9 @@ namespace Client.Controllers
                 newComment.UserId = User.Identity.GetUserId(); 
                  db.Comments.Add(newComment);
                  db.SaveChanges();
-                 var request = new JsonRequestService<Comment>(path);
-                 request.Post(null);
+                 //eventService.Comment(newComment.UserId);
+                //var request = new JsonRequestService(path);
+                // request.Post("{actionType:'comment', raitntgType:'Active'}");
             }
             
             return Redirect("/Comment/List");

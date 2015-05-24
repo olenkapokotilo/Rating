@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 
 namespace Client.Services
 {
-    public class JsonRequestService<T>: IRequestService<T> where T: class
+    public class JsonRequestService<ApiAction> : IRequestService<ApiAction> //where T: class
     {
         private readonly string path;
         public JsonRequestService(string basePath)
@@ -18,7 +18,7 @@ namespace Client.Services
             this.path = basePath;
 
         }
-        public void Post(T data)
+        public void Post(ApiAction data)
         {
             string jsonContent = JsonConvert.SerializeObject(data);
             string result = string.Empty;
@@ -52,7 +52,7 @@ namespace Client.Services
             return result;
         }
 
-        public void Put(T data)
+        public void Put(ApiAction data)
         {
             string jsonContent = JsonConvert.SerializeObject(data);
             string result = string.Empty;

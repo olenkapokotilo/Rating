@@ -17,7 +17,7 @@ namespace DataAccess.Repositories
         {
             using(var entities =  new Entities())
             {
-                var dbUser = entities.User.Single(u => u.Id == id);
+                var dbUser = entities.User.SingleOrDefault(u => u.Id == id);
                 var result = Mapper.Map<Domain.Entities.User>(dbUser);
                 return result;
             }
@@ -47,13 +47,6 @@ namespace DataAccess.Repositories
             {
 
                 entities.User.Add(Mapper.Map<DataAccess.Model.User>(user));
-                entities.SaveChanges();
-            }
-        }
-        public void SaveChanges() 
-        {
-            using (var entities = new Entities()) 
-            {
                 entities.SaveChanges();
             }
         }

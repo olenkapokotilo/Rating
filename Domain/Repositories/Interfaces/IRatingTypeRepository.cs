@@ -12,6 +12,7 @@ namespace Domain.Repositories.Interfaces
         Domain.Entities.RatingType GetRatingType(int id);
         void Edit(Domain.Entities.RatingType ratingType);
         void Delete(int id);
+        public int GetRatingTypeIdByName(string name);
         void Create(Domain.Entities.RatingType ratiingType);
     }
 }

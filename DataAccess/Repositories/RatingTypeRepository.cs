@@ -33,6 +33,15 @@ namespace DataAccess.Repositories
 
             }
         }
+        public int GetRatingTypeIdByName(string name)
+        {
+            using (var entities = new Entities())
+            {
+                var ratingType = entities.RatingType.SingleOrDefault(rt => rt.Name == name);
+                int result = ratingType.Id;
+                return result;
+            }
+        }
 
         public void Edit(Domain.Entities.RatingType newRatingType)
         {
