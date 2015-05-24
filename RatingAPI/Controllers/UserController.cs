@@ -42,15 +42,15 @@ namespace RatingAPI.Controllers
 
         private Domain.Entities.Action ConvertToDomain(ApiAction apiAction)
         {
-           var ratingType = _ratingTypeRepository.GetRatingTypeByNameAndProjectId(apiAction.ratingTypeName, apiAction.projectId);
-           var actionType = _actionTypeRepository.GetActionTypeByNameAndRatingTypeId(apiAction.actionTypeName, ratingType.Id);
+           var ratingType = _ratingTypeRepository.GetRatingTypeByNameAndProjectId(apiAction.RatingTypeName, apiAction.ProjectId);
+           var actionType = _actionTypeRepository.GetActionTypeByNameAndRatingTypeId(apiAction.ActionTypeName, ratingType.Id);
 
            return new Domain.Entities.Action()
            {
                DateTime = DateTime.Now,
                ActionTypeId = actionType.Id,
-               ProjectId = apiAction.projectId,
-               ProjectUserId = apiAction.projectUserId
+               ProjectId = apiAction.ProjectId,
+               ProjectUserId = apiAction.ProjectUserId
            };
         }
 
