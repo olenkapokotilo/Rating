@@ -12,7 +12,8 @@ namespace Client.Controllers
     public class CommentController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        string path = "http://localhost:2250/api/User/Create";
+        
+string path = "http://localhost:2250/api/User/Create";
         // GET: Comment
         public ActionResult List()
         {
@@ -30,9 +31,8 @@ namespace Client.Controllers
                 newComment.UserId = User.Identity.GetUserId(); 
                  db.Comments.Add(newComment);
                  db.SaveChanges();
-                 //eventService.Comment(newComment.UserId);
-                //var request = new JsonRequestService(path);
-                // request.Post("{actionType:'comment', raitntgType:'Active'}");
+                var eventComment = new EventService();
+                eventComment.Comment(newComment.UserId, path);
             }
             
             return Redirect("/Comment/List");
