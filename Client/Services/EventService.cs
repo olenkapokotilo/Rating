@@ -48,8 +48,8 @@ namespace Client.Services
 
             public static class ActionTypeNames
             {
-                public const string Comment = "Question";
-                public const string Comment = "OpenPage";
+                public const string Question = "Question";
+                public const string OpenPage = "OpenPage";
             }
         }
     }
