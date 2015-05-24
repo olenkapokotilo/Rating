@@ -9,8 +9,8 @@ namespace Domain.Repositories.Interfaces
     public interface IProjectUserRepository
     {
         void GetProjectUser(int id);
-        public bool ExistProjectUser(int id);
-        void Create(Domain.Entities.ProjectUser projectUser);
-        public Domain.Entities.ProjectUser GetProjectUserByName(string name);
+        bool ExistProjectUser(int id);
+        Domain.Entities.ProjectUser Create(Domain.Entities.ProjectUser projectUser);
+        Domain.Entities.ProjectUser GetProjectUserByName(string name);
     }
 }

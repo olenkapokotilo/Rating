@@ -35,14 +35,14 @@ namespace DataAccess.Repositories
                    return true;
                }
            }
-        
        }
-       public void Create(Domain.Entities.ProjectUser projectUser) 
+       public Domain.Entities.ProjectUser Create(Domain.Entities.ProjectUser projectUser) 
        {
            using (var entities = new Entities())
            {
-               entities.ProjectUser.Add(AutoMapper.Mapper.Map<DataAccess.Model.ProjectUser>(projectUser));
+               var newProjectUser = entities.ProjectUser.Add(AutoMapper.Mapper.Map<DataAccess.Model.ProjectUser>(projectUser));
                entities.SaveChanges();
+               return Mapper.Map<Domain.Entities.ProjectUser>(newProjectUser);
 
            }
        }

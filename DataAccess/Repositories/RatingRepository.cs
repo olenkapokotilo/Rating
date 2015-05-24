@@ -11,21 +11,6 @@ namespace DataAccess.Repositories
 {
     public class RatingRepository : IRatingRepository
     {
-        //public bool ExistRating(int idRatingType, int idProjectUser)
-        //{
-        //    using (var entities = new Entities())
-        //    {
-        //        var exist = entities.Rating.SingleOrDefault(r=> r.ProjectUserId == idProjectUser && r.RatingTypeId == idRatingType);
-        //        if (exist == null)
-        //        {
-        //            return false;
-        //        }
-        //        else
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //}
         public Domain.Entities.Rating GetRating(int idRatingType, int projectUserId)
         {
             using (var entities = new Entities())
@@ -36,24 +21,22 @@ namespace DataAccess.Repositories
 
             }
         }
-        public void Create(Domain.Entities.Rating rating)
+        public Domain.Entities.Rating Create(Domain.Entities.Rating rating)
         {
             using (var entities = new Entities())
             {
-                entities.Rating.Add(AutoMapper.Mapper.Map<DataAccess.Model.Rating>(rating));
+                var newRating = entities.Rating.Add(AutoMapper.Mapper.Map<DataAccess.Model.Rating>(rating));
                 entities.SaveChanges();
-
+                return newRating.ToDomain();
             }
         }
-        //public void Create(string name, int score, int RatingTypeId, int ProjectUserId)
-        //{
-        //    using (var entities = new Entities())
-        //    {
-        //        Domain.Entities.Rating rating = new Domain.Entities.Rating
-        //        entities.Rating.Add(AutoMapper.Mapper.Map<DataAccess.Model.Rating>(rating));
-        //        entities.SaveChanges();
+    }
 
-        //    }
-        //}
+    public static class RatingDataModelExtensions
+    {
+        public static Domain.Entities.Rating ToDomain(this Rating dataModel)
+        {
+            return Mapper.Map<Domain.Entities.Rating>(dataModel);
+        }
     }
 }

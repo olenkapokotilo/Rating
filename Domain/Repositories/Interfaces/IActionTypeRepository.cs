@@ -15,6 +15,6 @@ namespace Domain.Repositories.Interfaces
         void Edit(Domain.Entities.ActionType actionType);
         void Create(Domain.Entities.ActionType actionType);
         void Delete(int id);
-        public int GetActionTypeScoresByName(string name);
+        int GetActionTypeScoresByName(string name);
     }
 }
