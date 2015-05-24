@@ -28,6 +28,7 @@ namespace Rating.Controllers
             return View(_userRepository.GetAllUsers().Select(u=> UserModel.FromDomainModel(u)));
         }
        // [Authorize(Roles = "admin" )]
+        [Authorize]
         public ActionResult About(int id)
         {
             return View(UserModel.FromDomainModel(_userRepository.GetUser(id)));
