@@ -11,11 +11,11 @@ namespace DataAccess.Repositories
 {
     public class RatingRepository : IRatingRepository
     {
-        public Domain.Entities.Rating GetRating(int idRatingType, int projectUserId)
+        public Domain.Entities.Rating GetRating(int ratingTypeId, int projectUserId)
         {
             using (var entities = new Entities())
             {
-                var rating = entities.Rating.SingleOrDefault(r => r.RatingTypeId == idRatingType && r.ProjectUserId == projectUserId);
+                var rating = entities.Rating.SingleOrDefault(r => r.RatingTypeId == ratingTypeId && r.ProjectUserId == projectUserId);
                 var result = Mapper.Map<Domain.Entities.Rating>(rating);
                 return result;
 
