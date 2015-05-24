@@ -22,13 +22,12 @@ namespace Client.Services
         {
             string jsonContent = JsonConvert.SerializeObject(data);
             string result = string.Empty;
-            var httpRequest = HttpWebRequest.Create(path);
+            var httpRequest = (HttpWebRequest)HttpWebRequest.Create(path);
             httpRequest.Method = "POST";
-            httpRequest.ContentType = "application/json";
+            httpRequest.ContentType = "application/json; charset=utf-8";
             using (StreamWriter sw = new StreamWriter(httpRequest.GetRequestStream()))
             {
-                byte[] bytes = Convert.FromBase64String(jsonContent);
-                sw.Write(bytes);
+                sw.Write(jsonContent);
             }
             HttpWebResponse response = (HttpWebResponse)httpRequest.GetResponse();
             using (StreamReader sr = new StreamReader(response.GetResponseStream()))
@@ -74,6 +73,19 @@ namespace Client.Services
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+        static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        static string GetString(byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length / sizeof(char)];
+            System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+            return new string(chars);
         }
     }
 }
