@@ -28,8 +28,7 @@ namespace Domain.Services
         {
             Rating rating = GetRating(action);
             rating.Score += _actionTypeRepository.GetActionType(action.ActionTypeId).Scores;
-            //_ratingRepository.Update(rating);
-
+            _ratingRepository.Update(rating);
             // TODO: save action..
         }
 

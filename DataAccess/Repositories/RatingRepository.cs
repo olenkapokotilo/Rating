@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Domain.Repositories.Interfaces;
 using DataAccess.Model;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace DataAccess.Repositories
 {
@@ -30,6 +31,17 @@ namespace DataAccess.Repositories
                 return newRating.ToDomain();
             }
         }
+        void Update(Domain.Entities.Rating newRating) 
+        {
+            using (var entities = new Entities()) 
+            {
+                var rating = this.GetRating(Convert.ToInt32(newRating.RatingTypeId), Convert.ToInt32(newRating.ProjectUserId));
+                rating.Score = newRating.Score;
+                entities.Entry(Mapper.Map<DataAccess.Model.Rating>(rating)).State = EntityState.Modified;
+                entities.SaveChanges();
+            }
+        }
+
     }
 
     public static class RatingDataModelExtensions
