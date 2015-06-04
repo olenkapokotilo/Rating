@@ -29,6 +29,9 @@ namespace RatingAPI.ApiStartup
             //Mapper.CreateMap<D.Action, R_API.ActionModel>();
             Mapper.CreateMap<D.Rating, R_API.RatingModel>();
             Mapper.CreateMap<D.ProjectUser, R_API.ProjectUserModel>();
+            Mapper.CreateMap<D.Rating, R_API.RatingListModel>()
+                .ForMember(apiModel => apiModel.ExternalUserId, opt => opt.MapFrom(domainModel => domainModel.ProjectUser.ExternalId))
+                .ForMember(apiModel => apiModel.Scores, opt => opt.MapFrom(domainModel => domainModel.Score));
 
         }
 
