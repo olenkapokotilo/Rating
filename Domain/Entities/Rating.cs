@@ -13,5 +13,8 @@ namespace Domain.Entities
         public int Score { get; set; }
         public int RatingTypeId { get; set; }
         public int ProjectUserId { get; set; }
+
+        public ProjectUser ProjectUser { get; set; }
+
     }
 }
