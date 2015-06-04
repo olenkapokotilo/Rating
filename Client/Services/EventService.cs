@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using Client.Services;
 using System.Configuration;
+using Newtonsoft.Json;
 
 
 namespace Client.Services
@@ -21,6 +22,13 @@ namespace Client.Services
                 ActionTypeName = EventConstants.ActiveRatingType.ActionTypeNames.Comment,
                 RatingTypeName = EventConstants.ActiveRatingType.Name
             });
+        }
+        public string GetRatingList()
+        {
+            var pathGetList = "http://localhost:2250/api/User/GetRatingList?projectId=" + RatingProjectId + "&ratingTypeName=" + EventConstants.ActiveRatingType.Name;
+            var service = new JsonRequestService<ApiAction>(pathGetList);
+            var ratings = service.Get();
+            return ratings;
         }
 
         private static int RatingProjectId

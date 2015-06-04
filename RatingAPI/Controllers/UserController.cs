@@ -39,13 +39,17 @@ namespace RatingAPI.Controllers
             var action = ConvertToDomain(apiAction);
             _actionService.Create(action);
         }
+        public IEnumerable<RatingAPI.Models.RatingListModel> GetRatingList(int projectId, string ratingTypeName) 
+        {
+             var ratingType = _ratingTypeRepository.GetRatingTypeByNameAndProjectId(ratingTypeName, projectId);
+            var ratings = _ratingRepository.GetRatingsByRatingTypeId(ratingType.Id);
+            return Mapper.Map<IEnumerable<RatingAPI.Models.RatingListModel>>(ratings);
+        }
 
         private Domain.Entities.Action ConvertToDomain(ApiAction apiAction)
         {
            var ratingType = _ratingTypeRepository.GetRatingTypeByNameAndProjectId(apiAction.RatingTypeName, apiAction.ProjectId);
            var actionType = _actionTypeRepository.GetActionTypeByNameAndRatingTypeId(apiAction.ActionTypeName, ratingType.Id);
-          // var projectUser =  _projectUserRepository.GetProjectUserByExternalId(apiAction.ProjectUserExternalId);
-
            return new Domain.Entities.Action()
            {
                DateTime = DateTime.Now,
