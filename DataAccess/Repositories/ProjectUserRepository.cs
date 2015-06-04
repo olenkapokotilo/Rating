@@ -21,6 +21,7 @@ namespace DataAccess.Repositories
     
             }
        }
+       
        public bool ExistProjectUser(int id) 
        {
            using (var entities = new Entities())

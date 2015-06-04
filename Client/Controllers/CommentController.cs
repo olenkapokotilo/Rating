@@ -6,20 +6,22 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Client.Services;
+using System.Configuration;
+using Newtonsoft.Json;
 
 namespace Client.Controllers
 {
     public class CommentController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
-        
-string path = "http://localhost:2250/api/User/Create";
+       ApplicationDbContext db = new ApplicationDbContext();
+
+        string path = "http://localhost:2250/api/User/Create";
         // GET: Comment
         public ActionResult List()
         {
             return View(db.Comments.ToList());
         }
-        public ActionResult Create() 
+        public ActionResult Create()
         {
             return View();
         }
@@ -28,14 +30,16 @@ string path = "http://localhost:2250/api/User/Create";
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                newComment.UserId = User.Identity.GetUserId(); 
-                 db.Comments.Add(newComment);
-                 db.SaveChanges();
                 var eventComment = new EventService();
+                newComment.UserId = User.Identity.GetUserId();
+                db.Comments.Add(newComment);
+                db.SaveChanges();
+                
                 eventComment.Comment(newComment.UserId, path);
             }
-            
+
             return Redirect("/Comment/List");
         }
+
     }
 }
