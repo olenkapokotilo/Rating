@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Client.Services.RatingListModel>
+
+<h2>Active</h2>
+@foreach (var r in Model)
+{
+    <tr>
+        <td><b>@r.User.UserName     </b></td>
+        <td><p>@r.Scores</p></td>
+    </tr>
+}
+
