@@ -42,9 +42,17 @@ namespace DataAccess.Repositories
                 entities.SaveChanges();
             }
         }
+        public IEnumerable<Domain.Entities.Rating> GetRatingsByRatingTypeId(int ratingTypeId) 
+        {
+            using (var entities = new Entities()) 
+            {
+                IEnumerable<Rating> rating = entities.Rating.Where(r => r.RatingTypeId == ratingTypeId).ToList();
+                var result = Mapper.Map<IEnumerable<Domain.Entities.Rating>>(rating);
+                return result;
+            }
+        }
 
     }
-
     public static class RatingDataModelExtensions
     {
         public static Domain.Entities.Rating ToDomain(this Rating dataModel)
