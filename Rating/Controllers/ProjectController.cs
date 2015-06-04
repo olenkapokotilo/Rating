@@ -26,10 +26,15 @@ namespace Rating.Controllers
         {
             return View( _projectRepository.GetAllProject().Select(p=> ProjectModel.FromDomainModel(p)));
         }
+        public ActionResult Details(ProjectModel newProject)
+        {
+            return View(newProject);
+        }
         public ActionResult Edit(int id) 
         {
             return View(ProjectModel.FromDomainModel(_projectRepository.GetProject(id)));
         }
+        
         [HttpPost]
         public ActionResult Edit(ProjectModel project) 
         {   try

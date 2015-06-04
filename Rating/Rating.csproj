@@ -271,6 +271,7 @@
     <Content Include="Views\ActionType\List.cshtml" />
     <Content Include="Views\ActionType\Create.cshtml" />
     <Content Include="Views\ActionType\Edit.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
