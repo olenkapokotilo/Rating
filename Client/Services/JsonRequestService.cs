@@ -40,14 +40,13 @@ namespace Client.Services
         {
             string result = string.Empty;
             var httpRequest = HttpWebRequest.Create(path);
-            httpRequest.Method = "POST";
+            httpRequest.Method = "GET";
             httpRequest.ContentType = "application/json";
             HttpWebResponse response = (HttpWebResponse)httpRequest.GetResponse();
             using (StreamReader sr = new StreamReader(response.GetResponseStream()))
             {
                 result = sr.ReadToEnd();
             }
-
             return result;
         }
 

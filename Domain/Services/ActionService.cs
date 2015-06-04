@@ -32,6 +32,7 @@ namespace Domain.Services
             // TODO: save action..
         }
 
+
         private Rating GetRating(Action action)
         {
             var projectUser = GetUser(action);
@@ -57,5 +58,8 @@ namespace Domain.Services
             }
             return projectUser;
         }
+
+
+
     }
 }
