@@ -22,6 +22,8 @@ namespace Rating.CompositionRoot
             builder.RegisterType<DataAccess.Repositories.ProjectRepository>().As<IProjectRepository>().SingleInstance();
             builder.RegisterType<DataAccess.Repositories.RatingTypeRepository>().As<IRatingTypeRepository>().SingleInstance();
             builder.RegisterType<DataAccess.Repositories.ActionTypeRepository>().As<IActionTypeRepository>().SingleInstance();
+            builder.RegisterType<DataAccess.Repositories.BadgeTypeRepository>().As<IBadgeTypeRepository>().SingleInstance();
+            builder.RegisterType<DataAccess.Repositories.FileRepository>().As<IFileRepository>().SingleInstance();
 
 
 
