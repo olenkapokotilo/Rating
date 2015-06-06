@@ -25,6 +25,23 @@
           <Property Name="Scores" Type="int" Nullable="false" />
           <Property Name="RatingTypeId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="BadgeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Scores" Type="int" Nullable="false" />
+          <Property Name="RatingTypeId" Type="int" Nullable="false" />
+          <Property Name="FileId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
@@ -136,6 +153,34 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ActionType">
+              <PropertyRef Name="RatingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BadgeType_File">
+          <End Role="File" Type="Self.File" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BadgeType" Type="Self.BadgeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BadgeType">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BadgeType_RatingType">
+          <End Role="RatingType" Type="Self.RatingType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BadgeType" Type="Self.BadgeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RatingType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BadgeType">
               <PropertyRef Name="RatingTypeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -254,6 +299,8 @@
         <EntityContainer Name="RatingModelStoreContainer">
           <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActionType" EntityType="Self.ActionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BadgeType" EntityType="Self.BadgeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectUser" EntityType="Self.ProjectUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
@@ -276,6 +323,14 @@
           <AssociationSet Name="FK_ActionType_RatingType" Association="Self.FK_ActionType_RatingType">
             <End Role="RatingType" EntitySet="RatingType" />
             <End Role="ActionType" EntitySet="ActionType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BadgeType_File" Association="Self.FK_BadgeType_File">
+            <End Role="File" EntitySet="File" />
+            <End Role="BadgeType" EntitySet="BadgeType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BadgeType_RatingType" Association="Self.FK_BadgeType_RatingType">
+            <End Role="RatingType" EntitySet="RatingType" />
+            <End Role="BadgeType" EntitySet="BadgeType" />
           </AssociationSet>
           <AssociationSet Name="FK_Project_User" Association="Self.FK_Project_User">
             <End Role="User" EntitySet="User" />
@@ -386,6 +441,16 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="BadgeType" EntityType="RatingModel.BadgeType" />
+          <AssociationSet Name="FK_BadgeType_RatingType" Association="RatingModel.FK_BadgeType_RatingType">
+            <End Role="RatingType" EntitySet="RatingType" />
+            <End Role="BadgeType" EntitySet="BadgeType" />
+          </AssociationSet>
+          <EntitySet Name="File" EntityType="RatingModel.File" />
+          <AssociationSet Name="FK_BadgeType_File" Association="RatingModel.FK_BadgeType_File">
+            <End Role="File" EntitySet="File" />
+            <End Role="BadgeType" EntitySet="BadgeType" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -452,6 +517,7 @@
           <Property Name="ProjectId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="RatingModel.FK_Project_RatingType" FromRole="RatingType" ToRole="Project" />
           <NavigationProperty Name="Rating" Relationship="RatingModel.FK_Rating_RatingType" FromRole="RatingType" ToRole="Rating" />
+          <NavigationProperty Name="BadgeType" Relationship="RatingModel.FK_BadgeType_RatingType" FromRole="RatingType" ToRole="BadgeType" />
         </EntityType>
         <Association Name="FK_RatingType_ActionType">
           <End Type="RatingModel.RatingType" Role="RatingType" Multiplicity="1" />
@@ -629,6 +695,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BadgeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Scores" Type="Int32" Nullable="false" />
+          <Property Name="RatingTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RatingType" Relationship="RatingModel.FK_BadgeType_RatingType" FromRole="BadgeType" ToRole="RatingType" />
+          <Property Name="FileId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="File" Relationship="RatingModel.FK_BadgeType_File" FromRole="BadgeType" ToRole="File" />
+        </EntityType>
+        <Association Name="FK_BadgeType_RatingType">
+          <End Type="RatingModel.RatingType" Role="RatingType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="RatingModel.BadgeType" Role="BadgeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RatingType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BadgeType">
+              <PropertyRef Name="RatingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="BadgeType" Relationship="RatingModel.FK_BadgeType_File" FromRole="File" ToRole="BadgeType" />
+        </EntityType>
+        <Association Name="FK_BadgeType_File">
+          <End Type="RatingModel.File" Role="File" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="RatingModel.BadgeType" Role="BadgeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BadgeType">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -749,6 +863,25 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RatingModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RatingModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="BadgeType">
+            <EntityTypeMapping TypeName="RatingModel.BadgeType">
+              <MappingFragment StoreEntitySet="BadgeType">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="RatingTypeId" ColumnName="RatingTypeId" />
+                <ScalarProperty Name="Scores" ColumnName="Scores" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="File">
+            <EntityTypeMapping TypeName="RatingModel.File">
+              <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

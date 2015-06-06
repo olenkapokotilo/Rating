@@ -464,6 +464,89 @@ ADD CONSTRAINT FK_Action_Rating
 FOREIGN KEY (RatingId)
 REFERENCES Rating(Id)
 GO
+/*------------------ADD table badgeType--------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Table [dbo].[BadgeType]    Script Date: 04.06.2015 14:06:18 ******/
+USE [Rating]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[BadgeType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nchar](50) NOT NULL,
+	[Scores] [int] NOT NULL,
+ CONSTRAINT [PK_BadgeType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/*------------------ADD foreign key ratingTypeId in badgeType --------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [BadgeType]
+ADD RatingTypeId INT NOT NULL
+GO
+
+ALTER TABLE [BadgeType]
+ADD CONSTRAINT FK_BadgeType_RatingType
+FOREIGN KEY (RatingTypeId)
+REFERENCES RatingType(Id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+/*------------------ADD table File --------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Table [dbo].[File]    Script Date: 06.06.2015 20:31:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[File](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Image] [varbinary](max) NOT NULL,
+ CONSTRAINT [PK_File] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+/*------------------ADD foreign key in badgeType FileId --------------------------------------*/
+USE [Rating]
+GO
+ALTER TABLE [BadgeType]
+ADD FileId INT NOT NULL
+GO
+
+ALTER TABLE [BadgeType]
+ADD CONSTRAINT FK_BadgeType_File
+FOREIGN KEY (FileId)
+REFERENCES [File](Id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+/*------------------ADD --------------------------------------*/
+/*------------------ADD --------------------------------------*/
+/*------------------ADD --------------------------------------*/
 /*------------------ADD --------------------------------------*/
 /*------------------ADD --------------------------------------*/
 /*------------------ADD --------------------------------------*/

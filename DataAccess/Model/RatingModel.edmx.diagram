@@ -24,6 +24,10 @@
         <AssociationConnector Association="RatingModel.FK_Rating_ProjectUser" />
         <AssociationConnector Association="RatingModel.FK_Rating_RatingType" />
         <AssociationConnector Association="RatingModel.FK_User_Role" />
+        <EntityTypeShape EntityType="RatingModel.BadgeType" Width="1.5" PointX="8.625" PointY="8" />
+        <AssociationConnector Association="RatingModel.FK_BadgeType_RatingType" />
+        <EntityTypeShape EntityType="RatingModel.File" Width="1.5" PointX="3.375" PointY="7.875" />
+        <AssociationConnector Association="RatingModel.FK_BadgeType_File" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

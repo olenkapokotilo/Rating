@@ -12,22 +12,16 @@ namespace DataAccess.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class RatingType
+    public partial class File
     {
-        public RatingType()
+        public File()
         {
-            this.ActionTypes = new HashSet<ActionType>();
-            this.Rating = new HashSet<Rating>();
             this.BadgeType = new HashSet<BadgeType>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int ProjectId { get; set; }
+        public byte[] Image { get; set; }
     
-        public virtual ICollection<ActionType> ActionTypes { get; set; }
-        public virtual Project Project { get; set; }
-        public virtual ICollection<Rating> Rating { get; set; }
         public virtual ICollection<BadgeType> BadgeType { get; set; }
     }
 }
