@@ -188,6 +188,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ActionTypeModel.cs" />
+    <Compile Include="Models\BadgeTypeModel.cs" />
+    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProjectModel.cs" />
