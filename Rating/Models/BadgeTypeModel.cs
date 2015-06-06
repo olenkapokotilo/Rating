@@ -13,6 +13,6 @@ namespace Rating.Models
         public int RatingTypeId { get; set; }
         public int FileId { get; set; }
         //public virtual RatingType RatingType { get; set; }
-        public virtual FileModel File { get; set; }
+        public  FileModel File { get; set; }
     }
 }

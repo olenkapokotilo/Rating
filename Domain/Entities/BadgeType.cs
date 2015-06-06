@@ -14,7 +14,7 @@ namespace Domain.Entities
         public int RatingTypeId { get; set; }
         public int FileId { get; set; }
 
-        public virtual RatingType RatingType { get; set; }
-        public virtual File File { get; set; }
+        public  RatingType RatingType { get; set; }
+        public  File File { get; set; }
     }
 }

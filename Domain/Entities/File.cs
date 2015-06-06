@@ -16,6 +16,6 @@ namespace Domain.Entities
         public int Id { get; set; }
         public byte[] Image { get; set; }
 
-        public virtual ICollection<BadgeType> BadgeType { get; set; }
+        public  ICollection<BadgeType> BadgeType { get; set; }
     }
 }
