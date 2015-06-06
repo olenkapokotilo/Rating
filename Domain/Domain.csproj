@@ -52,6 +52,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Interfaces\IActionRepository.cs" />
     <Compile Include="Repositories\Interfaces\IActionTypeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBadgeTypeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IFileRepository.cs" />
     <Compile Include="Repositories\Interfaces\IProjectRepository.cs" />
     <Compile Include="Repositories\Interfaces\IProjectUserRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRatingRepository.cs" />
