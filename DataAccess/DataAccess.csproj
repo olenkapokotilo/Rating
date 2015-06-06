@@ -113,6 +113,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ActionRepository.cs" />
     <Compile Include="Repositories\ActionTypeRepository.cs" />
+    <Compile Include="Repositories\BadgeTypeRepository.cs" />
+    <Compile Include="Repositories\FileRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\ProjectUserRepository.cs" />
     <Compile Include="Repositories\RatingRepository.cs" />

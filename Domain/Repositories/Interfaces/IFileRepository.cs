@@ -8,7 +8,8 @@ namespace Domain.Repositories.Interfaces
 {
     interface IFileRepository
     {
-        void Create(Domain.Entities.File badgeType);
+        Domain.Entities.File GetFile(int id);
+        void Create(Domain.Entities.File file);
         void Delete(int id);
     }
 }
