@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    class BadgeType
+    public class BadgeType
     {
         public int Id { get; set; }
         public string Name { get; set; }

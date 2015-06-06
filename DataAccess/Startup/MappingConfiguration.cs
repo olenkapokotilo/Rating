@@ -29,6 +29,8 @@ namespace DataAccess.Startup
             //Mapper.CreateMap<DA.Action, D.Action>();
             Mapper.CreateMap<DA.Rating, D.Rating>();
             Mapper.CreateMap<DA.ProjectUser, D.ProjectUser>();
+            Mapper.CreateMap<DA.BadgeType, D.BadgeType>();
+            Mapper.CreateMap<DA.File, D.File>();
         }
 
         private static void RegisterFromDomainToDataAccess()
