@@ -12,6 +12,7 @@ namespace Rating.Models
         public string Name { get; set; }
         public int ProjectId { get; set; }
         public ICollection<ActionTypeModel> ActionTypes { get; set; }
+        public  ICollection<BadgeTypeModel> BadgeType { get; set; }
         public static RatingTypeModel FromDomainModel(Domain.Entities.RatingType domainRatingType)
         {
             return Mapper.Map<RatingTypeModel>(domainRatingType);

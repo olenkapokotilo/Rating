@@ -12,5 +12,6 @@ namespace Domain.Entities
         public string Name { get; set; }
         public int ProjectId { get; set; }
         public ICollection<ActionType> ActionTypes { get; set; }
+        public ICollection<BadgeType> BadgeType { get; set; }
     }
 }

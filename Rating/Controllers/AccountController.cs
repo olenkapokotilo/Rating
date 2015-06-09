@@ -65,6 +65,8 @@ namespace Rating.Controllers
 
             MembershipUser newUser = Membership.CreateUser(Email, Password);
             FormsAuthentication.SetAuthCookie(Email, false);
+            var cookies = new HttpCookie("userId");
+            HttpContext.Response.Cookies["userId"].Value = _userRepository.GetUserByEmail(Email).Id.ToString();
             return Redirect("/Home/Index");
         }
         [Authorize]
