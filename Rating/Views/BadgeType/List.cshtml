@@ -1,0 +1,21 @@
+﻿@model Rating.Models.RatingTypeModel
+<h3>BadgeType</h3>
+<table>
+    @foreach (var bt in Model.BadgeType)
+    {
+        <tr>
+            <td>
+                 <div class="pull-left" style="margin-right: 10px">
+                    <img class="img-thumbnail" width="75" height="75"
+                         src="@Url.Action("GetImage", "BadgeType",
+                new { bt.FileId })" />
+                </div>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td><a href="/BadgeType/Create/?ratingTypeId=@Model.Id"> + </a></td>
+    </tr>
+</table>
+
+   
