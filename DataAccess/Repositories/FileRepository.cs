@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.Model;
+using Domain.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    public class FileRepository
+    public class FileRepository : IFileRepository
+
     {
         public Domain.Entities.File GetFile(int id)
         {
@@ -20,12 +22,15 @@ namespace DataAccess.Repositories
                 return result;
             }
         }
-        public void Create(Domain.Entities.File file) 
+        public int Create(byte[] image) 
         {
             using (var entities = new Entities())
             {
-                entities.File.Add(Mapper.Map<DataAccess.Model.File>(file));
+                var file = new File();
+                file.Image = image;
+                var newFile = entities.File.Add(Mapper.Map<DataAccess.Model.File>(file));
                 entities.SaveChanges();
+                return newFile.Id;
             }  
         }
         public void Delete(int id) 

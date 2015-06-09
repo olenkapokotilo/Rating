@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories.Interfaces
 {
-    interface IFileRepository
+    public interface IFileRepository
     {
         Domain.Entities.File GetFile(int id);
-        void Create(Domain.Entities.File file);
+        int Create(byte[] image);
         void Delete(int id);
     }
 }
