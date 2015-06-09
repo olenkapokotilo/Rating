@@ -180,6 +180,7 @@
     <Compile Include="CompositionRoot\AutofacDependencyResolver.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActionTypeController.cs" />
+    <Compile Include="Controllers\BadgeTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -189,7 +190,6 @@
     </Compile>
     <Compile Include="Models\ActionTypeModel.cs" />
     <Compile Include="Models\BadgeTypeModel.cs" />
-    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProjectModel.cs" />
@@ -274,6 +274,8 @@
     <Content Include="Views\ActionType\Create.cshtml" />
     <Content Include="Views\ActionType\Edit.cshtml" />
     <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\BadgeType\Create.cshtml" />
+    <Content Include="Views\BadgeType\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
