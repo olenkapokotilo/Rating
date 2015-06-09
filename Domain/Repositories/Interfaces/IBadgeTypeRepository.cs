@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories.Interfaces
 {
-    interface IBadgeTypeRepository
+    public interface IBadgeTypeRepository
     {
         Domain.Entities.BadgeType GetBadgeType(int id);
         IEnumerable<Domain.Entities.BadgeType> GetAllBadgeTypeByRatingType(int id);

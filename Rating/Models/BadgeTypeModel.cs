@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,16 @@ namespace Rating.Models
         public int Scores { get; set; }
         public int RatingTypeId { get; set; }
         public int FileId { get; set; }
-        //public virtual RatingType RatingType { get; set; }
-        public  FileModel File { get; set; }
+        public byte[] Image { get; set; }
+        
+        public static BadgeTypeModel FromDomainModel(Domain.Entities.BadgeType domainBadgeType)
+        {
+            return Mapper.Map<BadgeTypeModel>(domainBadgeType);
+        }
+
+        public Domain.Entities.BadgeType ToDomainModel()
+        {
+            return Mapper.Map<Domain.Entities.BadgeType>(this);
+        }
     }
 }

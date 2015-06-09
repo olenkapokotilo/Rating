@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.Model;
+using Domain.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    public class BadgeTypeRepository
+    public class BadgeTypeRepository :IBadgeTypeRepository
     {
         public Domain.Entities.BadgeType GetBadgeType(int id) 
         {
