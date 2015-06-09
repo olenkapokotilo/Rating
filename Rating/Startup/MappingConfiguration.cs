@@ -26,10 +26,9 @@ namespace Rating
             Mapper.CreateMap<R.RoleModel, D.Role>();
             Mapper.CreateMap<R.RatingTypeModel, D.RatingType>();
             Mapper.CreateMap<R.ActionTypeModel, D.ActionType>();
-            Mapper.CreateMap<R.FileModel, D.File>()
-                .ForMember(dFile => dFile.BadgeType, opt => opt.Ignore());
             Mapper.CreateMap<R.BadgeTypeModel, D.BadgeType>()
-                .ForMember(dBadgeType=> dBadgeType.RatingType, otp=>otp.Ignore());
+                .ForMember(dBadgeType => dBadgeType.RatingType, otp => otp.Ignore())
+                .ForMember(dBadgeType => dBadgeType.File, otp => otp.Ignore());
            
         }
 
@@ -40,8 +39,8 @@ namespace Rating
             Mapper.CreateMap<D.Role, R.RoleModel>();
             Mapper.CreateMap<D.RatingType, R.RatingTypeModel>();
             Mapper.CreateMap<D.ActionType, R.ActionTypeModel>();
-            Mapper.CreateMap<D.BadgeType, R.BadgeTypeModel>();
-            Mapper.CreateMap<D.File, R.FileModel>();
+            Mapper.CreateMap<D.BadgeType, R.BadgeTypeModel>()
+                .ForMember(rBadgeTypeModel => rBadgeTypeModel.Image, otp=> otp.Ignore());
 
         }
 

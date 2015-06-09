@@ -56,6 +56,8 @@ namespace DataAccess.Startup
                      .ForMember(daRating => daRating.Action, opt => opt.Ignore())
                     .ForMember(daRating => daRating.ProjectUser, opt => opt.Ignore())
                     .ForMember(daRating => daRating.RatingType, opt => opt.Ignore());
+          Mapper.CreateMap<D.BadgeType, DA.BadgeType>();
+          Mapper.CreateMap<D.File, DA.File>();
           //Mapper.CreateMap<D.Action, DA.Action>()
           //          .ForMember(daAction => daAction.Rating, opt => opt.Ignore())
           //          .ForMember(daAction => daAction.ProjectUser, opt => opt.Ignore())
