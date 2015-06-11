@@ -12,5 +12,7 @@ namespace Domain.Entities
         public string ExternalId { get; set; }
         public string Name { get; set; }
         public int? ProjectId { get; set; }
+        public ICollection<Rating> Rating { get; set; }
+        public ICollection<Badge> Badges { get; set; }
     }
 }

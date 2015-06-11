@@ -16,5 +16,6 @@ namespace Domain.Entities
 
         public  RatingType RatingType { get; set; }
         public  File File { get; set; }
+        public ICollection<Badge> Badges { get; set; }
     }
 }

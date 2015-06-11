@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Entities\Action.cs" />
     <Compile Include="Entities\ActionType.cs" />
+    <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\BadgeType.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Project.cs" />
