@@ -544,8 +544,60 @@ REFERENCES [File](Id)
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-/*------------------ADD --------------------------------------*/
-/*------------------ADD --------------------------------------*/
+/*------------------ADD table badge--------------------------------------*/
+USE [Rating]
+GO
+
+/****** Object:  Table [dbo].[Badge]    Script Date: 11.06.2015 17:09:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Badge](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[BadgeTypeId] [int] NOT NULL,
+	[ProjectUserId] [int] NOT NULL,
+ CONSTRAINT [PK_Badge] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Badge]  WITH CHECK ADD  CONSTRAINT [FK_Badge_BadgeType] FOREIGN KEY([BadgeTypeId])
+REFERENCES [dbo].[BadgeType] ([Id])
+GO
+
+ALTER TABLE [dbo].[Badge] CHECK CONSTRAINT [FK_Badge_BadgeType]
+GO
+
+ALTER TABLE [dbo].[Badge]  WITH CHECK ADD  CONSTRAINT [FK_Badge_ProjectUser] FOREIGN KEY([ProjectUserId])
+REFERENCES [dbo].[ProjectUser] ([Id])
+GO
+
+ALTER TABLE [dbo].[Badge] CHECK CONSTRAINT [FK_Badge_ProjectUser]
+GO
+
+
+/*unique index for badge*/
+USE [Rating]
+GO
+
+/****** Object:  Index [IX_Badge]    Script Date: 11.06.2015 17:10:10 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Badge] ON [dbo].[Badge]
+(
+	[ProjectUserId] ASC,
+	[BadgeTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+
+
+
+
 /*------------------ADD --------------------------------------*/
 /*------------------ADD --------------------------------------*/
 /*------------------ADD --------------------------------------*/

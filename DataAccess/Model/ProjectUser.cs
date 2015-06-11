@@ -18,6 +18,7 @@ namespace DataAccess.Model
         {
             this.Action = new HashSet<Action>();
             this.Rating = new HashSet<Rating>();
+            this.Badges = new HashSet<Badge>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace DataAccess.Model
         public virtual ICollection<Action> Action { get; set; }
         public virtual Project Project { get; set; }
         public virtual ICollection<Rating> Rating { get; set; }
+        public virtual ICollection<Badge> Badges { get; set; }
     }
 }

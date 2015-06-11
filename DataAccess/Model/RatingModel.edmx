@@ -25,6 +25,14 @@
           <Property Name="Scores" Type="int" Nullable="false" />
           <Property Name="RatingTypeId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BadgeTypeId" Type="int" Nullable="false" />
+          <Property Name="ProjectUserId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="BadgeType">
           <Key>
             <PropertyRef Name="Id" />
@@ -154,6 +162,30 @@
             </Principal>
             <Dependent Role="ActionType">
               <PropertyRef Name="RatingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Badge_BadgeType">
+          <End Role="BadgeType" Type="Self.BadgeType" Multiplicity="1" />
+          <End Role="Badge" Type="Self.Badge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BadgeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Badge">
+              <PropertyRef Name="BadgeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Badge_ProjectUser">
+          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="1" />
+          <End Role="Badge" Type="Self.Badge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Badge">
+              <PropertyRef Name="ProjectUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -299,6 +331,7 @@
         <EntityContainer Name="RatingModelStoreContainer">
           <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActionType" EntityType="Self.ActionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BadgeType" EntityType="Self.BadgeType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
@@ -323,6 +356,14 @@
           <AssociationSet Name="FK_ActionType_RatingType" Association="Self.FK_ActionType_RatingType">
             <End Role="RatingType" EntitySet="RatingType" />
             <End Role="ActionType" EntitySet="ActionType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Badge_BadgeType" Association="Self.FK_Badge_BadgeType">
+            <End Role="BadgeType" EntitySet="BadgeType" />
+            <End Role="Badge" EntitySet="Badge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Badge_ProjectUser" Association="Self.FK_Badge_ProjectUser">
+            <End Role="ProjectUser" EntitySet="ProjectUser" />
+            <End Role="Badge" EntitySet="Badge" />
           </AssociationSet>
           <AssociationSet Name="FK_BadgeType_File" Association="Self.FK_BadgeType_File">
             <End Role="File" EntitySet="File" />
@@ -451,6 +492,15 @@
             <End Role="File" EntitySet="File" />
             <End Role="BadgeType" EntitySet="BadgeType" />
           </AssociationSet>
+          <EntitySet Name="Badges" EntityType="RatingModel.Badge" />
+          <AssociationSet Name="FK_Badge_BadgeType" Association="RatingModel.FK_Badge_BadgeType">
+            <End Role="BadgeType" EntitySet="BadgeType" />
+            <End Role="Badge" EntitySet="Badges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Badge_ProjectUser" Association="RatingModel.FK_Badge_ProjectUser">
+            <End Role="ProjectUser" EntitySet="ProjectUser" />
+            <End Role="Badge" EntitySet="Badges" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -568,6 +618,7 @@
           <NavigationProperty Name="Project" Relationship="RatingModel.FK_ProjectUser_Project" FromRole="ProjectUser" ToRole="Project" />
           <NavigationProperty Name="Rating" Relationship="RatingModel.FK_Rating_ProjectUser" FromRole="ProjectUser" ToRole="Rating" />
           <Property Name="ExternalId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Badges" Relationship="RatingModel.FK_Badge_ProjectUser" FromRole="ProjectUser" ToRole="Badge" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -706,6 +757,7 @@
           <NavigationProperty Name="RatingType" Relationship="RatingModel.FK_BadgeType_RatingType" FromRole="BadgeType" ToRole="RatingType" />
           <Property Name="FileId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="File" Relationship="RatingModel.FK_BadgeType_File" FromRole="BadgeType" ToRole="File" />
+          <NavigationProperty Name="Badges" Relationship="RatingModel.FK_Badge_BadgeType" FromRole="BadgeType" ToRole="Badge" />
         </EntityType>
         <Association Name="FK_BadgeType_RatingType">
           <End Type="RatingModel.RatingType" Role="RatingType" Multiplicity="1">
@@ -740,6 +792,40 @@
             </Principal>
             <Dependent Role="BadgeType">
               <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BadgeTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BadgeType" Relationship="RatingModel.FK_Badge_BadgeType" FromRole="Badge" ToRole="BadgeType" />
+          <NavigationProperty Name="ProjectUser" Relationship="RatingModel.FK_Badge_ProjectUser" FromRole="Badge" ToRole="ProjectUser" />
+        </EntityType>
+        <Association Name="FK_Badge_BadgeType">
+          <End Type="RatingModel.BadgeType" Role="BadgeType" Multiplicity="1" />
+          <End Type="RatingModel.Badge" Role="Badge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BadgeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Badge">
+              <PropertyRef Name="BadgeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Badge_ProjectUser">
+          <End Type="RatingModel.ProjectUser" Role="ProjectUser" Multiplicity="1" />
+          <End Type="RatingModel.Badge" Role="Badge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Badge">
+              <PropertyRef Name="ProjectUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -882,6 +968,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Badges">
+            <EntityTypeMapping TypeName="RatingModel.Badge">
+              <MappingFragment StoreEntitySet="Badge">
+                <ScalarProperty Name="ProjectUserId" ColumnName="ProjectUserId" />
+                <ScalarProperty Name="BadgeTypeId" ColumnName="BadgeTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -896,7 +991,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

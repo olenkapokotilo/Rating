@@ -12,21 +12,13 @@ namespace DataAccess.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class BadgeType
+    public partial class Badge
     {
-        public BadgeType()
-        {
-            this.Badges = new HashSet<Badge>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Scores { get; set; }
-        public int RatingTypeId { get; set; }
-        public int FileId { get; set; }
+        public int BadgeTypeId { get; set; }
+        public int ProjectUserId { get; set; }
     
-        public virtual RatingType RatingType { get; set; }
-        public virtual File File { get; set; }
-        public virtual ICollection<Badge> Badges { get; set; }
-    }
+        public virtual BadgeType BadgeType { get; set; }
+        public virtual ProjectUser ProjectUser { get; set; }
+    } 
 }

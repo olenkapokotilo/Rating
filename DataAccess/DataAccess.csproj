@@ -62,6 +62,9 @@
     <Compile Include="Model\ActionType.cs">
       <DependentUpon>RatingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Badge.cs">
+      <DependentUpon>RatingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\BadgeType.cs">
       <DependentUpon>RatingModel.tt</DependentUpon>
     </Compile>
